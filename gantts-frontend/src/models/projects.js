@@ -9,3 +9,9 @@ class Project {
 };
 
 Project.all = [];
+
+Project.findById = (id) =>{
+  return Project.all.filter((p)=>{
+    return p.id === id
+  })[0]
+}

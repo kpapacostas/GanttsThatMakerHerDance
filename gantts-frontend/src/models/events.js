@@ -11,3 +11,9 @@ class Event {
 };
 
 Event.all = [];
+
+Event.findById = (id) => {
+  return Event.all.filter((e) =>{
+    return e.id === id
+  })[0]
+}

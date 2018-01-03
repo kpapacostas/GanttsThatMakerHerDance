@@ -1,3 +1,5 @@
+timerEndpoint = 0;
+
 $(function(){
   $(".track").sortable({
     axis: "x",
@@ -8,6 +10,8 @@ $(function(){
         let start_time = $(task).offset().left
         console.log(task, start_time)
       }
+
+
     }
   })
 })

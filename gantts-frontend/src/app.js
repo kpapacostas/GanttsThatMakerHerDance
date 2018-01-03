@@ -4,7 +4,6 @@ class App {
 
   static click() {
     document.addEventListener('click', (e) => {
-
       switch (e.target.className) {
         case "track ui-sortable":
           let createTaskBtn = document.createElement('BUTTON')
@@ -33,6 +32,21 @@ class App {
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+          break
+
+        case "start-gantt":
+          let tasks = $(".track").children();
+          let rightmost = 0;
+          for (let task of tasks) {
+            let rightSide = $(task).offset().left + $(task).outerWidth();
+            if (rightSide > rightmost){
+              rightmost = rightSide;
+            }
+            // let tasksEndpoint = $(tasks[tasks.length-1]).offset().right
+          }
+          let leftmost = $(tasks[0]).offset().left;
+          App.progressBar(leftmost,rightmost,tasks.length)
+
 
       }
 
@@ -45,8 +59,6 @@ class App {
   //
   //
   //   })
-
-  }
 
 
 
@@ -73,19 +85,22 @@ class App {
   //   })
   // }
 
-  static progressBar(totalTime) {
-    let totalSeconds = totalTime*60;
-    let totalMilliseconds = totalTime*60*1000;
-    $("#myBar").animate({width: '100%'}, totalMilliseconds);
 
-      let myInterval = setInterval(function(){
-        let formattedSeconds = formattedTime(totalSeconds);
-        document.getElementById("myBar").innerText=formattedSeconds;
-        if (totalSeconds > 0){
-      totalSeconds--;
-    } else { clearInterval(myInterval)}
-    }
-        ,1000);
+  static progressBar(startLength, endLength, tasksLength) {
+    let totalSeconds = tasksLength*5; //add *60 back when done
+    let totalMilliseconds = totalSeconds*1000;
+    $("#myBar").animate({width: endLength-startLength}, totalMilliseconds, "linear");
+    $("#timeline").animate({left: endLength-startLength}, totalMilliseconds, "linear");
+    let myInterval = setInterval(function(){
+      let formattedSeconds = formattedTime(totalSeconds);
+      document.getElementById("myBar").innerText=formattedSeconds; // should move this somewhere, but where
+      if (totalSeconds > 0){
+        totalSeconds--;
+      } else {
+        document.getElementById("myBar").innerText="Done" // move this somewhere, too
+        clearInterval(myInterval)}
+      }
+      ,1000);
     };
 }; //END OF APP CLASS
 

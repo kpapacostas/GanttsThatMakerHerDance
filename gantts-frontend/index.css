@@ -98,7 +98,7 @@ ul {
 }
 
 #myProgress {
-  width: 100%;
+  width: 95%;
   height: 30px;
   background-color: #ddd;
   position: absolute;
@@ -116,5 +116,11 @@ ul {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 2;
+}
+
+#timeline {
+  border-left: 3px solid black;
+  z-index: 5;
+  height: 94%;
+  position: absolute;
 }

@@ -124,3 +124,9 @@ ul {
   height: 94%;
   position: absolute;
 }
+
+#button {
+  text-align: left;
+  float: left;
+  position: relative;
+}

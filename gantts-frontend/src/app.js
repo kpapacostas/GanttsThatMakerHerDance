@@ -5,33 +5,50 @@ class App {
   static click() {
     document.addEventListener('click', (e) => {
       switch (e.target.className) {
+
+//create task box
         case "track ui-sortable":
           let createTaskBtn = document.createElement('BUTTON')
           createTaskBtn.className = "create-task-button"
           createTaskBtn.innerHTML = "Create New Task!"
-          let newTask = document.createElement('DIV')
+          let newTask = document.createElement('LI')
           newTask.className = "task"
-          newTask.id ="${i}"
           newTask.appendChild(createTaskBtn)
           e.target.append(newTask)
           break
 
+//create task form
         case "create-task-button":
-          let newForm = TaskForm.newForm()
+          let task = ''
+          let newForm = TaskForm.newForm(task)
           e.target.parentElement.append(newForm)
           e.target.remove()
           break
 
+//task box with title
         case "create-task":
           let taskTitle = document.getElementById('task-title').value
           let taskContent = document.getElementById('task-content').value
+          let parent = e.target.parentElement.parentElement
+          parent.id = "made-task"
+
+          let editBtn = document.createElement('BUTTON')
+          editBtn.innerHTML = "+"
+          editBtn.className = "edit-button"
+          editBtn.id = "button"
+
+          let delBtn = document.createElement('BUTTON')
+          delBtn.innerHTML = "-"
+          delBtn.className = "delete-button"
+          delBtn.id = "button"
+
           let xLocation = e.target.parentElement.getBoundingClientRect()
           let startTime = xLocation.left
           let duration = 20
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
-
-          e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+          parent.innerHTML = `<h4>${taskTitle}</h4>`
+          parent.append(editBtn, delBtn)
           break
 
         case "start-gantt":
@@ -46,20 +63,54 @@ class App {
           }
           let leftmost = $(tasks[0]).offset().left;
           App.progressBar(leftmost,rightmost,tasks.length)
+          break
 
+        case "delete-button":
+          let delTask = Task.findByTitle(e.target.parentElement.children[0].innerHTML)
+          TasksAdapter.delete(delTask)
+          e.target.parentElement.remove()
+          break
 
-      }
+        case "edit-button":
+          let ediTask = Task.findByTitle(e.target.parentElement.children[0].innerHTML)
+          let newF = TaskForm.newForm(ediTask)
+          e.target.parentElement.append(newF)
+          break
 
+        }
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION
-
+  //
   // static mouseOver(){
   //
-  //   document.addEventListener('mouseOver', (e)=>{
+  //   document.addEventListener('mouseover', (e)=>{
+  //
+  //     switch (e.target.id){
+  //        case "made-task":
+  //         if (e.target.children.length === 1){
+  //
+  //        }
+  //         break
   //
   //
-  //   })
-
+  //     }//END OF MOUSEOVER SWITCH
+  //
+  //   })//END OF MOUSEOVER LISTENER
+  // }//END OF MOUSEOVER FUNCTION
+  //
+  // static mouseOut(){
+  //   document.addEventListener('mouseleave', (e) =>{
+  //
+  //     switch (e.target.id){
+  //       case "made-task":
+  //       debugger
+  //         document.getElementById('edit-button').remove()
+  //         document.getElementById('delete-button').remove()
+  //     }
+  //
+  //
+  //   })//END OF MOUSEOUT LISTENER
+  // }//END OF MOUSEOUT FUNCTION
 
 
   // static mouseUp() {

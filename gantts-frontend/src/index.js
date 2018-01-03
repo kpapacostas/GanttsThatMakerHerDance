@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
   // ProjectsAdapter.all()
-  App.singleClick()
+
+  App.click()
 
 })

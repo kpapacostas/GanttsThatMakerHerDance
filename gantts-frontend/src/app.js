@@ -24,7 +24,10 @@ class App {
         case "create-task":
           let taskTitle = document.getElementById('task-title').value
           let taskContent = document.getElementById('task-content').value
-          Task.create(taskTitle, taskContent)
+          let xLocation = e.target.parentElement.getBoundingClientRect()
+          let startTime = xLocation.left
+          let duration = 20
+          TasksAdapter.create(taskTitle, taskContent, startTime, duration)
       }
 
     })//CLICK-EVENTLISTENER

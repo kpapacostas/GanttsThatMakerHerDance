@@ -58,6 +58,7 @@ class TasksAdapter {
 // }
 
 function createTaskObj(json){
+  debugger
   let newTask = new Task(json)
 }
 

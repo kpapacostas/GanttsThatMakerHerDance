@@ -22,7 +22,7 @@ class Api::TracksController < ApplicationController
   end
 
   def track_params
-    params.require(:track).permit(:name, :priority)
+    params.require(:track).permit(:name, :priority, :project_id)
   end
 
 end

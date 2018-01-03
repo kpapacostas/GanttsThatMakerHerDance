@@ -5,6 +5,12 @@ class Track {
     Track.all.push(this);
   };
 
+  static find(id) {
+    return Track.all.find((track) => {
+      return track.id === id
+    })
+  }
+
 };
 
 Track.all = [];

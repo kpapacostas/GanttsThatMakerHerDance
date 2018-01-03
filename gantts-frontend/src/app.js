@@ -1,11 +1,9 @@
 class App {
 
-
-
   static click() {
     document.addEventListener('click', (e) => {
-
-      switch (e.target.className) {
+      console.log(e)
+      switch (e.target.className) { // refactor with the taskElement creator from tasks adapter
         case "track ui-sortable":
           let createTaskBtn = document.createElement('BUTTON')
           createTaskBtn.className = "create-task-button"
@@ -33,6 +31,26 @@ class App {
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+          break
+
+        case "new-track-button":
+          let allTracks = document.querySelectorAll("ul")
+          let highestPriority = 0
+          for (let track of allTracks) {
+            let trackId = elementIdNumber(track)
+            let currentTrack = Track.find(trackId)
+            debugger
+            if (currentTrack.priority > highestPriority) {
+              highestPriority = currentTrack.priority
+            }
+          }
+          let projectName = document.querySelector(".project-name")
+          projectId = elementIdNumber(projectName) // 'project-1'
+          debugger
+          // let newTrack = TracksAdapter.create(1, highestPriority) // project id, priority
+          let aDiv = document.querySelector(".a")
+          // TracksAdapter.createTrackElement(aDiv, newTrack)
+          break
 
       }
 
@@ -45,10 +63,6 @@ class App {
   //
   //
   //   })
-
-  }
-
-
 
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{

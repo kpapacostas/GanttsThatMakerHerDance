@@ -12,6 +12,7 @@
     <link rel=“stylesheet” href=“//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css”>
 
     <!-- PROJECT JS -->
+    <script src="./config.js"></script>
     <script src="./src/app.js"></script>
     <script src="./src/index.js"></script>
     <script src="./src/forms/task_form.js"></script>
@@ -21,12 +22,16 @@
     <script src="./src/adapters/tasks_adapter.js"></script>
     <script src="./src/adapters/projects_adapter.js"></script>
     <script src="./src/adapters/tracks_adapter.js"></script>
-    <script src="./src/views/task.js"></script>
 
     <title>Gantts A Make Her Dance</title>
   </head>
   <body>
     <div class="container">
+
+        <div class="header">
+          <h1 class="project-name"></h1>
+          <h2>POPULATE PAGE</h2>
+        </div>
 
         <div class="c">
           <div id="myProgress">
@@ -35,16 +40,19 @@
         </div>
 
         <div class="a">
-          <div class="track-container">
+          <!-- <div class="track-container">
             <ul class="track">
               <li class="task">Task 1 </li>
               <li class="task">Task 2 </li>
               <li class="task">Task 3 </li>
             </ul>
-          </div>
+          </div> -->
         </div>
 
         <div class="sidebar">
+          <div class="new-track">
+            <button class="new-track-button">+</button>
+          </div>
         </div>
 
         <div class="d"> </div>
@@ -53,6 +61,8 @@
     </div>
 
 
+    <!-- jQuery -->
+    <script src="./src/views/task-view.js"></script>
 
   </body>
 </html>

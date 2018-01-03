@@ -6,14 +6,14 @@ class TracksAdapter {
   //   .then(json => populateTracks(json))
   // }
 
-  static create(priority){
+  static create(project_id, priority){
     const params = {
           "method": "POST",
           "headers": {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          "body": JSON.stringify({priority: priority})
+          "body": JSON.stringify({project_id: project_id, priority: priority})
         }
       return fetch('http://localhost:3000/api/tracks', params)
         .then(resp => resp.json())
@@ -48,12 +48,23 @@ class TracksAdapter {
   }
 
 //HELPER METHODS
-//
-// function populateTracks(json){
-//   json.forEach((hash) =>{
-//     new Track(hash)
-//   })
-// }
+
+function populateTracks(json){
+  console.log("hit populate tracks")
+  let aDiv = document.querySelector(".a")
+  json.forEach((hash) =>{
+    let newTrack = new Track(hash)
+    createTrackElement(aDiv, newTrack)
+  })
+}
+
+function createTrackElement(container, track) {
+  container.innerHTML += `
+    <h3>Track ${track.priority}</h3>
+    <ol class="track-container">
+      <ul class="track" id="track-${track.id}"}></ul>
+    </ol>`
+}
 
 function createTrackObj(json){
   new Track(json)

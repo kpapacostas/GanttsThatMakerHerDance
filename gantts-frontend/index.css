@@ -35,6 +35,7 @@ html, body {
 }
 
 .task {
+  float: left;
   z-index: 2;
   height: 10vh;
   width: 10vw;

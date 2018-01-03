@@ -6,14 +6,14 @@ class TasksAdapter {
   //   .then(json => populateTasks(json))
   // }
 
-  static create(title, content, startTime, duration){
+  static create(title, content, startTime, duration, trackId){
     const params = {
           "method": "POST",
           "headers": {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          "body": JSON.stringify({title: title, content: content, start_time: startTime, duration: duration})
+          "body": JSON.stringify({title: title, content: content, start_time: startTime, duration: duration, track_id: trackId})
         }
       return fetch('http://localhost:3000/api/tasks', params)
         .then(resp => resp.json())
@@ -58,7 +58,6 @@ class TasksAdapter {
 // }
 
 function createTaskObj(json){
-  debugger
   let newTask = new Task(json)
 }
 

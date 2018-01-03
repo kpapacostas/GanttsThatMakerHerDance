@@ -8,9 +8,9 @@ class App {
           let createTaskBtn = document.createElement('BUTTON')
           createTaskBtn.className = "create-task-button"
           createTaskBtn.innerHTML = "Create New Task!"
-
           let newTask = document.createElement('DIV')
           newTask.className = "task"
+          newTask.id ="${i}"
           newTask.appendChild(createTaskBtn)
           e.target.append(newTask)
           break
@@ -27,7 +27,11 @@ class App {
           let xLocation = e.target.parentElement.getBoundingClientRect()
           let startTime = xLocation.left
           let duration = 20
-          TasksAdapter.create(taskTitle, taskContent, startTime, duration)
+
+          TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
+
+          e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+
       }
 
     })//CLICK-EVENTLISTENER

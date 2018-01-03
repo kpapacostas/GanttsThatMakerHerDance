@@ -7,20 +7,20 @@ html, body {
   min-height: 100%;
   /* margin: 0; */
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: 50px repeat(4, 1fr);
   grid-template-rows: repeat(11, 1fr);
   grid-template-areas:
-    "c c c c"
-    "a a a a"
-    "a a a a"
-    "a a a a"
-    "a a a a"
-    "d d d d"
-    "d d d d"
-    "d d d d"
-    "d d d d"
-    "e e e e"
-    "e e e e";
+    "c c c c c"
+    "s a a a a"
+    "s a a a a"
+    "s a a a a"
+    "s a a a a"
+    "d d d d d"
+    "d d d d d"
+    "d d d d d"
+    "d d d d d"
+    "e e e e e"
+    "e e e e e";
 }
 
 ul {
@@ -38,7 +38,6 @@ ul {
   background-color: red;
 }
 
-
 .d {
   grid-area: d;
   background-color: blue;
@@ -47,6 +46,12 @@ ul {
 .e {
   grid-area: e;
   background-color: teal;
+}
+
+/* This is a sidebar for new tracks */
+.sidebar {
+  grid-area: s;
+  background-color: white;
 }
 
 .track {

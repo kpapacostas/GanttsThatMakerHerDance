@@ -6,7 +6,7 @@ $(function(){
       let tasks = $(this).children()
       for (task of tasks) {
         let start_time = $(task).offset().left
-        console.log(start_time)
+        console.log(task, start_time)
       }
     }
   })

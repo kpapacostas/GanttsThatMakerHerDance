@@ -5,7 +5,6 @@ class Track {
     Track.all.push(this);
   };
 
-
 };
 
 Track.all = [];

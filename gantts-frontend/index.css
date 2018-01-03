@@ -12,7 +12,7 @@ html, body {
   grid-template-areas:
     "a a a a"
     "a a a a"
-    "a a a a"
+    "b b b b"
     "b b b b";
 }
 
@@ -24,4 +24,22 @@ html, body {
 .b {
   grid-area: b;
   background-color: blue;
+}
+
+.track {
+  z-index: 1;
+  height: 10vh;
+  width: 100vw;
+  position: relative;
+  background-color: yellow;
+}
+
+.task {
+  z-index: 2;
+  height: 10vh;
+  width: 10vw;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: green;
 }

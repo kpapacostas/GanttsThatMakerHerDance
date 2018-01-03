@@ -1,10 +1,11 @@
 class App {
 
-  document.addEventListener('click', (e)=>{
-    
-
-
+  static doubleClick() {
+    document.addEventListener('dblclick', (e)=>{
+      
   })
+
+  }
 
 
 }

@@ -118,3 +118,9 @@ ul {
   left: 0;
   z-index: 2;
 }
+
+#button {
+  text-align: left;
+  float: left;
+  position: relative;
+}

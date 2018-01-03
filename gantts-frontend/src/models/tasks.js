@@ -13,8 +13,14 @@ class Task {
 
 Task.all = [];
 
+Task.findByTitle = (title) =>{
+  return Task.all.filter((t)=>{
+    return t.title === title
+  })[0]
+}
+
 Task.findById = (id) => {
-  return Task.all.filter((e) =>{
-    return e.id === id
+  return Task.all.filter((t) =>{
+    return t.id === id
   })[0]
 }

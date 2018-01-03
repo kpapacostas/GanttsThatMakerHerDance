@@ -1,10 +1,10 @@
 class EventsAdapter {
 
-  static all(){
-    fetch('http://localhost:3000/api/events')
-    .then(resp => resp.json())
-    .then(json => populateEvents(json))
-  }
+  // static all(){
+  //   fetch('http://localhost:3000/api/events')
+  //   .then(resp => resp.json())
+  //   .then(json => populateEvents(json))
+  // }
 
   static create(title, content, startTime, duration){
     const params = {
@@ -50,12 +50,12 @@ class EventsAdapter {
 
 
 //HELPER METHODS
-
-function populateEvents(json){
-  json.forEach((hash)=>{
-    let newEvent = new Event(hash)
-  })
-}
+//
+// function populateEvents(json){
+//   json.forEach((hash)=>{
+//     let newEvent = new Event(hash)
+//   })
+// }
 
 function createEventObj(json){
   let newEvent = new Event(json)

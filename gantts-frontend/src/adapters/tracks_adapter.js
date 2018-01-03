@@ -1,10 +1,10 @@
 class TracksAdapter {
-
-  static all(){
-    fetch('http://localhost:3000/api/tracks')
-    .then(resp => resp.json())
-    .then(json => populateTracks(json))
-  }
+  //
+  // static all(){
+  //   fetch('http://localhost:3000/api/tracks')
+  //   .then(resp => resp.json())
+  //   .then(json => populateTracks(json))
+  // }
 
   static create(priority){
     const params = {
@@ -48,12 +48,12 @@ class TracksAdapter {
   }
 
 //HELPER METHODS
-
-function populateTracks(json){
-  json.forEach((hash) =>{
-    new Track(hash)
-  })
-}
+//
+// function populateTracks(json){
+//   json.forEach((hash) =>{
+//     new Track(hash)
+//   })
+// }
 
 function createTrackObj(json){
   new Track(json)

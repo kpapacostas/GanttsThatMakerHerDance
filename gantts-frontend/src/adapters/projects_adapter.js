@@ -52,8 +52,14 @@ class ProjectsAdapter {
 //HELPER METHODS
 
 function populateProjects(json){
-  json.forEach((hash)=>{
-    let newProject = new Project(hash)
+  json.forEach((data)=>{
+    new Project(data)
+    data.events.forEach((hash)=>{
+      new Event(hash)
+    })
+    data.tracks.forEach((hash)=>{
+      new Track(hash)
+    })
   })
 }
 

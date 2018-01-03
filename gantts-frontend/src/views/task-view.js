@@ -1,4 +1,4 @@
-$(function(){
+const makeSortable = function(){
   $(".track").sortable({
     axis: "x",
     grid: [20, 0],
@@ -10,4 +10,4 @@ $(function(){
       }
     }
   })
-})
+}

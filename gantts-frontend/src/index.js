@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // ProjectsAdapter.all()
 
+  ProjectsAdapter.all().then(makeSortable)
   App.click()
 })

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
         resources :events
       end
     end
+    resources :tracks
+    resources :tasks
   end
 
 end

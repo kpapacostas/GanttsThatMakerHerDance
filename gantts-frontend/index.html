@@ -16,18 +16,10 @@
     <title>Gantts That Make Her Dance</title>
     <script>
       $(function(){
-        $(".track").sortable(
-          // {axis: "x"}
-        );
-        $(".task").draggable({
-          connectToSortable: ".track",
-          axis: "x"
-        })
-      //   draggable({
-      //     axis: "x",
-      //     grid: [10, 20],
-      //     // snap: true
-      //   })
+        $(".track").sortable({
+          axis: "x",
+          grid: [10, 20]
+        });
       });
     </script>
   </head>
@@ -35,10 +27,10 @@
     <div class="container">
         <div class="a">
           <div class="track-container">
-            <ul class="track">
-              <li class="task">Task 1 </li>
-              <li class="task">Task 2 </li>
-            </ul>
+            <div class="track">
+              <div class="task">Task 1 </div>
+              <div class="task">Task 2 </div>
+            </div>
           </div>
         </div>
         <div class="b"> </div>

@@ -1,10 +1,8 @@
 class App {
 
-  document.addEventListener('click', (e)=>{
-    
-
-
-  })
-
-
+  static singleClick() {
+    document.body.addEventListener('click', (e)=>{
+      alert()
+    })
+  }
 }

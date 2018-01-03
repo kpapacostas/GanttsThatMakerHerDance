@@ -27,7 +27,7 @@ class TasksAdapter {
             'Content-Type': 'application/json',
             'Accept': 'application/json'
           },
-          "body": JSON.stringify({title: e.title, content: e.content, start_time: e.start_time, duration: e.duration})
+          "body": JSON.stringify({title: task.title, content: task.content, start_time: task.start_time, duration: task.duration})
         }
       return fetch(`http://localhost:3000/api/tasks/${task.id}`, params)
         .then(resp => resp.json())
@@ -58,13 +58,13 @@ class TasksAdapter {
 // }
 
 function createTaskObj(json){
-  let newEvent = new Event(json)
+  let newTask = new Task(json)
 }
 
 function updateTaskObj(json){
-  let e = Task.findById(json.id)
-  e.title = json.title
-  e.content = json.content
-  e.start_time = json.start_time
-  e.duration = json.duration
+  let t = Task.findById(json.id)
+  t.title = json.title
+  t.content = json.content
+  t.start_time = json.start_time
+  t.duration = json.duration
 }

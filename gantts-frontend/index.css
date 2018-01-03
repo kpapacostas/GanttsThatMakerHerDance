@@ -8,22 +8,41 @@ html, body {
   /* margin: 0; */
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-rows: repeat(4, 1fr);
+  grid-template-rows: repeat(11, 1fr);
   grid-template-areas:
+    "c c c c"
     "a a a a"
     "a a a a"
-    "b b b b"
-    "b b b b";
+    "a a a a"
+    "a a a a"
+    "d d d d"
+    "d d d d"
+    "d d d d"
+    "d d d d"
+    "e e e e"
+    "e e e e";
 }
 
 .a {
   grid-area: a;
+  background-color: orange;
+  position: relative;
+}
+
+.c {
+  grid-area: c;
   background-color: red;
 }
 
-.b {
-  grid-area: b;
+
+.d {
+  grid-area: d;
   background-color: blue;
+}
+
+.e {
+  grid-area: e;
+  background-color: teal;
 }
 
 .track {
@@ -43,4 +62,26 @@ html, body {
   top: 0;
   left: 0;
   background-color: green;
+}
+
+#myProgress {
+  width: 100%;
+  height: 30px;
+  background-color: #ddd;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+}
+
+#myBar {
+  width: 0%;
+  height: 30px;
+  background-color: #4CAF50;
+  text-align: center;
+  line-height: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 2;
 }

@@ -6,8 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js" type="text/javascript"></script>
     <link rel=“stylesheet” href=“//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css”>
-    <script src="./src/index.js"></script>
     <script src="./src/app.js"></script>
+    <script src="./src/index.js"></script>
     <script src="./src/models/projects.js"></script>
     <script src="./src/models/tasks.js"></script>
     <script src="./src/models/tracks.js"></script>
@@ -16,25 +16,34 @@
     <script src="./src/adapters/tracks_adapter.js"></script>
     <title>Gantts That Make Her Dance</title>
     <script>
-      $(function(){
-        $(".track").sortable({
-          axis: "x",
-          grid: [10, 20]
-        });
-      });
+    $(function() {
+          $( ".track" ).sortable();
+       });
+      //   draggable({
+      //     axis: "x",
+      //     grid: [10, 20],
+      //     // snap: true
+      //   })
     </script>
   </head>
   <body>
     <div class="container">
-        <div class="a">
-          <div class="track-container">
-            <div class="track">
-              <div class="task">Task 1 </div>
-              <div class="task">Task 2 </div>
-            </div>
+        <div class="c">
+          <div id="myProgress">
+            <div id="myBar"></div>
           </div>
         </div>
-        <div class="b"> </div>
+        <div class="a">
+
+          <div class="track-container">
+            <ul class="track">
+              <li class="task">Task 1 </li>
+              <li class="task">Task 2 </li>
+            </ul>
+          </div>
+        </div>
+        <div class="d"> </div>
+        <div class="e"> </div>
     </div>
 
 

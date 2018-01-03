@@ -39,6 +39,15 @@ class App {
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION
 
+  // static mouseOver(){
+  //
+  //   document.addEventListener('mouseOver', (e)=>{
+  //
+  //
+  //   })
+
+  }
+
 
 
   // static mouseUp() {

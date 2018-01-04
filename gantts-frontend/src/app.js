@@ -54,8 +54,8 @@ class App {
 
           parent.innerHTML = `
           ${taskTitle}
-          <br/><button class="edit-button" id="button">+</button>
-          <button class="delete-button" id="button">-</button> `
+          <br/><button class="edit-button" id="${taskTitle}">+</button>
+          <button class="delete-button" id="${taskTitle}">-</button> `
           break
 
   // add a new track
@@ -102,13 +102,13 @@ class App {
           break
 
         case "delete-button":
-          let delTask = Task.findByTitle(e.target.parentElement.children[0].innerHTML)
+          let delTask = Task.findByTitle(e.target.id)
           TasksAdapter.delete(delTask)
           e.target.parentElement.remove()
           break
 
         case "edit-button":
-          let ediTask = Task.findByTitle(e.target.parentElement.children[0].innerHTML)
+          let ediTask = Task.findByTitle(e.target.id)
           let newF = TaskForm.newForm(ediTask)
           e.target.parentElement.append(newF)
           break

@@ -66,8 +66,8 @@ function createTaskElement(trackElement, task) {
   newTask.className = "task"
   newTask.id = `${task.id}`
   newTask.innerHTML = `${task.title}
-  <br/><button class="edit-button" id="button">+</button>
-  <button class="delete-button" id="button">-</button> `
+  <br/><button class="edit-button" id="${task.title}">+</button>
+  <button class="delete-button" id="${task.title}">-</button> `
   trackElement.append(newTask)
 }
 

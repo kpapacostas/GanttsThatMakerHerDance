@@ -12,7 +12,12 @@ class App {
           createTaskBtn.innerHTML = "Create New Task!"
           let newTask = document.createElement('LI')
           newTask.className = "task"
-          newTask.appendChild(createTaskBtn)
+
+          let delButton = document.createElement('BUTTON')
+          delButton.innerHTML = "Delete Task"
+          delButton.className = "delete-blank-task"
+
+          newTask.append(createTaskBtn, delButton)
           e.target.append(newTask)
           break
 
@@ -47,10 +52,10 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
-
-          parent.innerHTML = `<h4>${taskTitle}</h4>`
-          parent.append(editBtn, delBtn)
-          e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+          parent.innerHTML = `
+          ${taskTitle}
+          <br/><button class="edit-button" id="button">+</button>
+          <button class="delete-button" id="button">-</button> `
           break
 
   // add a new track

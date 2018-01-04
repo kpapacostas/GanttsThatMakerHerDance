@@ -50,12 +50,25 @@ class TasksAdapter {
 
 
 //HELPER METHODS
-//
-// function populateTasks(json){
-//   json.forEach((hash)=>{
-//     let newTask = new Task(hash)
-//   })
-// }
+
+function populateTasks(json){
+  json.forEach((hash)=>{
+    let newTask = new Task(hash)
+    let trackId = newTask.track_id
+    let parentTrack = document.getElementById(`track-${trackId}`)
+    createTaskElement(parentTrack, newTask)
+  })
+}
+
+function createTaskElement(trackElement, task) {
+
+  let newTask = document.createElement('div')
+  newTask.className = "task"
+  newTask.id = `${task.id}`
+  newTask.innerHTML = task.title
+  trackElement.append(newTask)
+}
+
 
 function createTaskObj(json){
   let newTask = new Task(json)

@@ -8,8 +8,9 @@ html, body {
   /* margin: 0; */
   display: grid;
   grid-template-columns: 50px repeat(4, 1fr);
-  grid-template-rows: repeat(11, 1fr);
+  grid-template-rows: 100px 100px repeat(4, auto) repeat(6, 50px);
   grid-template-areas:
+    "h h h h h"
     "c c c c c"
     "s a a a a"
     "s a a a a"
@@ -31,6 +32,8 @@ ul {
   grid-area: a;
   background-color: orange;
   position: relative;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .c {
@@ -48,10 +51,22 @@ ul {
   background-color: teal;
 }
 
+.header {
+  grid-area: h;
+  background-color: pink;
+}
+
 /* This is a sidebar for new tracks */
 .sidebar {
   grid-area: s;
   background-color: white;
+}
+
+.new-track {
+  margin-bottom: 30px;
+  margin: auto;
+  width: 20px;
+  height: 20px;
 }
 
 .track {
@@ -60,7 +75,19 @@ ul {
   width: 100vw;
   position: relative;
   background-color: yellow;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding-left: 0;
 }
+
+.track-container {
+  padding-left: 0;
+}
+
+.new-track-button {
+
+}
+
 
 .task {
   float: left;

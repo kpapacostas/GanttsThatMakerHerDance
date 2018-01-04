@@ -1,7 +1,7 @@
 class ProjectsAdapter {
 
-  static all(){
-    fetch('http://localhost:3000/api/projects')
+  static all() {
+    return fetch('http://localhost:3000/api/projects')
     .then(resp => resp.json())
     .then(json => populateProjects(json))
   }
@@ -15,10 +15,10 @@ class ProjectsAdapter {
           },
           "body": JSON.stringify({name: name})
         }
-      return fetch('http://localhost:3000/api/projects', params)
-        .then(resp => resp.json())
-        .then(json => createProjectObj(json))
-      }
+    return fetch('http://localhost:3000/api/projects', params)
+      .then(resp => resp.json())
+      .then(json => createProjectObj(json)) // chain this to where we actually call create
+    }
 
   static update(project){
     const params = {
@@ -29,10 +29,10 @@ class ProjectsAdapter {
           },
           "body": JSON.stringify({name: project.name})
         }
-      return fetch(`http://localhost:3000/api/projects/${project.id}`, params)
-        .then(resp => resp.json())
-        .then(json => updateProjObj(json))
-      }
+    return fetch(`http://localhost:3000/api/projects/${project.id}`, params)
+      .then(resp => resp.json())
+      .then(json => updateProjObj(json))
+    }
 
     static delete(project){
       const params = {
@@ -42,8 +42,8 @@ class ProjectsAdapter {
               'Accept': 'application/json'
             }
           }
-        return fetch(`http://localhost:3000/api/projects/${project.id}`, params)
-        }
+      return fetch(`http://localhost:3000/api/projects/${project.id}`, params)
+      }
 
   }
 
@@ -53,14 +53,17 @@ class ProjectsAdapter {
 
 function populateProjects(json){
   json.forEach((data)=>{
-    new Project(data)
-    data.tasks.forEach((hash)=>{
-      new Task(hash)
-    })
-    data.tracks.forEach((hash)=>{
-      new Track(hash)
-    })
+    let newProject = new Project(data)
+    createProjectElement(newProject)
+    populateTracks(data.tracks)
+    populateTasks(data.tasks)
   })
+}
+
+function createProjectElement(project) {
+  let projectName = document.querySelector(".project-name")
+  projectName.innerHTML = project.name
+  projectName.id = `project-${project.id}`
 }
 
 function createProjectObj(json){

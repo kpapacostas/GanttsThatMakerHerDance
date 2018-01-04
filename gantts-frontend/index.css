@@ -11,7 +11,6 @@ html, body {
   grid-template-rows: 100px 100px repeat(4, auto) repeat(6, 50px);
   grid-template-areas:
     "h h h h h"
-    "c c c c c"
     "s a a a a"
     "s a a a a"
     "s a a a a"
@@ -30,44 +29,45 @@ ul {
 
 .a {
   grid-area: a;
-  background-color: orange;
+  background-color: white;
+  border: 10px solid;
+  border-color: white;
+
   position: relative;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-.c {
-  grid-area: c;
-  background-color: #f4ff81;
-}
 
 .d {
   grid-area: d;
-  background-color: blue;
+  background-color: white;
+  border-top: 2px solid;
+  border-color: #b0bec5;
 }
 
 .e {
   grid-area: e;
-  background-color: teal;
+  background-color: white;
+  border-top: 2px solid;
+  border-color: #b0bec5;
+
 }
 
+
+
 .header {
+  z-index: 0;
   grid-area: h;
-  /* background-color: white; */
   background-image: url(many_clocks.jpeg);
   background-position: left top;
-  opacity: 0.5;
   border: 10px solid;
+  border-bottom: 0px;
   border-color: white;
-
   padding: 10px
 }
 
 /* This is a sidebar for new tracks */
-.sidebar {
-  grid-area: s;
-  background-color: white;
-}
 
 .new-track {
   margin-bottom: 30px;
@@ -79,9 +79,8 @@ ul {
 .track {
   z-index: 1;
   height: 10vh;
-  /* width: 100vw; */
   position: relative;
-  background-color: yellow;
+  background-color: white;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
@@ -89,25 +88,25 @@ ul {
 
 .track-container {
   padding-left: 0;
+  border-bottom: 2px solid;
+  border-color: #b0bec5;
 }
 
 .new-track-button {
-
 }
-
 
 .task {
   float: left;
   z-index: 2;
   height: 10vh;
   width: 10vw;
-  /* position: absolute; */
+  position: relative;
   top: 0;
   left: 0;
-  background-color: green;
+  background-color: teal;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border-width: 2px;
+  border-color: white;
   opacity: 0.8;
 }
 
@@ -167,7 +166,9 @@ ul {
   position: absolute;
 }
 
-#button {
+.button {
+  background-color: teal;
+  border: 0px;
   text-align: left;
   float: left;
   position: relative;

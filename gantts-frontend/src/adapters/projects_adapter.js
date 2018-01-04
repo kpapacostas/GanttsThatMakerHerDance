@@ -47,8 +47,6 @@ class ProjectsAdapter {
 
   }
 
-
-
 //HELPER METHODS
 
 function populateProjects(json){
@@ -56,7 +54,9 @@ function populateProjects(json){
     let newProject = new Project(data)
     createProjectElement(newProject)
     populateTracks(data.tracks)
-    populateTasks(data.tasks)
+    data.tracks.forEach((track) => {
+      populateTasks(track.tasks)
+    })
   })
 }
 

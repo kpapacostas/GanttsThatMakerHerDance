@@ -5,7 +5,6 @@ class Project {
     Project.all.push(this);
   };
 
-
 };
 
 Project.all = [];

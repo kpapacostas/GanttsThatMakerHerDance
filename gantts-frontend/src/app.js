@@ -8,14 +8,15 @@ class App {
 //create task box
         case "track ui-sortable":
           let createTaskBtn = document.createElement('BUTTON')
-          createTaskBtn.className = "create-task-button"
-          createTaskBtn.innerHTML = "Create New Task!"
+          createTaskBtn.className = "create-task button"
+          createTaskBtn.innerHTML = "Create Task!"
+
           let newTask = document.createElement('LI')
           newTask.className = "task"
 
           let delButton = document.createElement('BUTTON')
-          delButton.innerHTML = "Delete Task"
-          delButton.className = "delete-blank-task"
+          delButton.innerHTML = "Or Not."
+          delButton.className = "delete-blank-task button"
 
           newTask.append(createTaskBtn, delButton)
           e.target.append(newTask)
@@ -36,16 +37,6 @@ class App {
           let parent = e.target.parentElement.parentElement
           parent.id = "made-task"
 
-          let editBtn = document.createElement('BUTTON')
-          editBtn.innerHTML = "+"
-          editBtn.className = "edit-button"
-          editBtn.id = "button"
-
-          let delBtn = document.createElement('BUTTON')
-          delBtn.innerHTML = "-"
-          delBtn.className = "delete-button"
-          delBtn.id = "button"
-
           let xLocation = e.target.parentElement.getBoundingClientRect()
           let startTime = xLocation.left
           let duration = 20
@@ -56,9 +47,10 @@ class App {
 
           parent.innerHTML = `
           ${taskTitle}
-          <br/><button class="edit-button" id="${taskTitle}">+</button>
-          <button class="delete-button" id="${taskTitle}">-</button> `
+          <br/><button class="edit button" id="${taskTitle}">+</button>
+          <button class="delete button" id="${taskTitle}">-</button> `
           break
+
 
   // add a new track
         case "new-track-button":
@@ -85,13 +77,20 @@ class App {
         case "delete-track-button":
           // identify the track
           let track = Track.find(elementIdNumber(e.target))
-          debugger
-          // TracksAdapter.delete(track)
+          let trackElement = document.getElementById(`track-container-${track.id}`)
+          for (let task of track.tasks) {
+            TasksAdapter.delete(task)
+          }
+          TracksAdapter.delete(track)
+
+          trackElement.innerHTML = ''
+          trackElement.remove()
           break
 
   // start timer bar
 
         case "start-gantt":
+          // document.querySelector('t')
           $(':button').prop('disabled', true);
 
           //animation and overall timer
@@ -161,77 +160,33 @@ class App {
 
           break
 
-        case "delete-button":
+//edit, delete & update task buttons
+
+        case "delete button":
           let delTask = Task.findByTitle(e.target.id)
           TasksAdapter.delete(delTask)
           e.target.parentElement.remove()
           break
 
-        case "edit-button":
+        case "edit button":
           let ediTask = Task.findByTitle(e.target.id)
           let newF = TaskForm.newForm(ediTask)
           e.target.parentElement.append(newF)
           break
 
+        // case "update-task":
+        // debugger
+        //   let upTask = Task.findByTitle(e.target.parentElement.parentElement.innerHTML.split('<')[0])
+        //   console.log(upTask);
+        //   break
+
+        
         default:
           console.log(e)
         }
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION
-  //
-  // static mouseOver(){
-  //
-  //   document.addEventListener('mouseover', (e)=>{
-  //
-  //     switch (e.target.id){
-  //        case "made-task":
-  //         if (e.target.children.length === 1){
-  //
-  //        }
-  //         break
-  //
-  //
-  //     }//END OF MOUSEOVER SWITCH
-  //
-  //   })//END OF MOUSEOVER LISTENER
-  // }//END OF MOUSEOVER FUNCTION
-  //
-  // static mouseOut(){
-  //   document.addEventListener('mouseleave', (e) =>{
-  //
-  //     switch (e.target.id){
-  //       case "made-task":
-  //       debugger
-  //         document.getElementById('edit-button').remove()
-  //         document.getElementById('delete-button').remove()
-  //     }
-  //
-  //
-  //   })//END OF MOUSEOUT LISTENER
-  // }//END OF MOUSEOUT FUNCTION
 
-  // static mouseUp() {
-  //   document.body.addEventListener('mouseup', (e)=>{
-  //     let element = e.target
-  //     switch(e.target.className) {
-  //       case "task ui-sortable-handle":
-  //
-  //         console.log(element.id)
-  //
-  //         let rect = element.getBoundingClientRect()
-  //         console.log(
-  //           "Width:" + element.clientWidth + ", " +
-  //           "Id:" + element.id + ", " +
-  //           "x:" + rect.left + ", " +
-  //           "y:" + rect.right)
-  //         console.log(element.parentElement)
-  //
-  //         break
-  //       default:
-  //         console.log("ya clicked")
-  //     }
-  //   })
-  // }
 
 
   static progressBar(startLength, endLength, tasksLength) {

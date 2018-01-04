@@ -21,7 +21,7 @@ class TaskForm {
         <br/><label for="task-title">Edit Task</label>
         <br/><input id="task-title" placeholder="${task.title}">
         <textarea id="task-content" placeholder="${task.content}"></textarea>
-        <button type="button" class="update-task">Update Task</button><br/>
+        <button type="button" class="update-task">Update</button><br/>
       `
       return form
 

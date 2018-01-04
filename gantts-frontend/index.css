@@ -179,3 +179,7 @@ ul {
 h3{
   margin: 0px;
 }
+
+.inline{
+  display: inline-block;
+}

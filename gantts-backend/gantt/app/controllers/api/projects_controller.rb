@@ -16,7 +16,7 @@ class Api::ProjectsController < ApplicationController
     render json: @project, status: 200
   end
 
-  def delete
+  def destroy
     @project = Project.find(params[:id])
     @project.destroy
   end

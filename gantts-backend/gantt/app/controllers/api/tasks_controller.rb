@@ -17,6 +17,12 @@ class Api::TasksController < ApplicationController
     # end
   end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+    render json: {message:"Zap! Deleted #{@task.id}"}
+  end
+
   def task_params
     params.require(:task).permit(:title, :content, :start_time, :duration, :track_id)
   end

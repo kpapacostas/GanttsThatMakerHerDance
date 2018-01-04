@@ -47,32 +47,31 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
-<<<<<<< HEAD
+
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
-=======
+
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
           break
 
+  // add a new track
         case "new-track-button":
           let allTracks = document.querySelectorAll("ul")
           let highestPriority = 0
           for (let track of allTracks) {
             let trackId = elementIdNumber(track)
             let currentTrack = Track.find(trackId)
-            debugger
             if (currentTrack.priority > highestPriority) {
               highestPriority = currentTrack.priority
             }
           }
+
+          highestPriority++
+
           let projectName = document.querySelector(".project-name")
-          projectId = elementIdNumber(projectName) // 'project-1'
-          debugger
-          // let newTrack = TracksAdapter.create(1, highestPriority) // project id, priority
-          let aDiv = document.querySelector(".a")
-          // TracksAdapter.createTrackElement(aDiv, newTrack)
-          break
->>>>>>> jon
+          let projectId = elementIdNumber(projectName) // 'project-1'
+
+          let newTrack = TracksAdapter.create(projectId, highestPriority)
 
           break
 
@@ -123,12 +122,6 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
-<<<<<<< HEAD
-
-
-
-=======
->>>>>>> jon
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target

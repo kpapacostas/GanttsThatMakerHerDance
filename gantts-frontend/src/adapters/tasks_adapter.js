@@ -69,7 +69,6 @@ function createTaskElement(trackElement, task) {
   trackElement.append(newTask)
 }
 
-
 function createTaskObj(json){
   let newTask = new Task(json)
 }

@@ -45,8 +45,8 @@ class App {
           let startTime = xLocation.left
           let duration = 20
 
-          TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
-
+          let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement)
+          TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
 
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
@@ -72,6 +72,17 @@ class App {
 
           let newTrack = TracksAdapter.create(projectId, highestPriority)
           break
+
+  // delete existing track
+
+        case "delete-track-button":
+          // identify the track
+          let track = Track.find(elementIdNumber(e.target))
+          debugger
+          // TracksAdapter.delete(track)
+          break
+
+  // start timer bar
 
         case "start-gantt":
           let tasks = $(".track").children();
@@ -99,6 +110,8 @@ class App {
           e.target.parentElement.append(newF)
           break
 
+        default:
+          console.log(e)
         }
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION

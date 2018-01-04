@@ -47,15 +47,9 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
-<<<<<<< HEAD
 
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
-
-=======
-          parent.innerHTML = `<h4>${taskTitle}</h4>`
-          parent.append(editBtn, delBtn)
->>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
           break
 
@@ -80,8 +74,13 @@ class App {
           break
 
         case "start-gantt":
+          $(':button').prop('disabled', true);
+
+          //animation and overall timer
           let tasks = $(".track").children();
           let rightmost = 0;
+          let leftmost = $(tasks[0]).offset().left;
+
           for (let task of tasks) {
             let rightSide = $(task).offset().left + $(task).outerWidth();
             if (rightSide > rightmost){
@@ -89,8 +88,12 @@ class App {
             }
             // let tasksEndpoint = $(tasks[tasks.length-1]).offset().right
           }
-          let leftmost = $(tasks[0]).offset().left;
           App.progressBar(leftmost,rightmost,tasks.length)
+
+          let tracks = Track.all.map(x => x.id)
+
+          Task.findByTrack
+
           break
 
         case "delete-button":
@@ -140,11 +143,6 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
-<<<<<<< HEAD
-=======
-
-
->>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target
@@ -185,6 +183,7 @@ class App {
         document.getElementById("timer").innerText="" // move this somewhere, too
         $("#myBar").width("0px");
         $("#timeline").animate({left: 0}, 0, "linear");
+        $(':button').prop('disabled', false);
         clearInterval(myInterval)}
       }
       ,1000);

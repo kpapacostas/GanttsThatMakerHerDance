@@ -11,7 +11,6 @@ html, body {
   grid-template-rows: 100px 100px repeat(4, auto) repeat(6, 50px);
   grid-template-areas:
     "h h h h h"
-    "c c c c c"
     "s a a a a"
     "s a a a a"
     "s a a a a"
@@ -36,10 +35,10 @@ ul {
   margin-bottom: 0;
 }
 
-.c {
+/* .c {
   grid-area: c;
   background-color: #f4ff81;
-}
+} */
 
 .d {
   grid-area: d;
@@ -51,15 +50,18 @@ ul {
   background-color: teal;
 }
 
+.headerDiv {
+  z-index: 1;
+}
+
 .header {
+  z-index: 0;
   grid-area: h;
-  /* background-color: white; */
   background-image: url(many_clocks.jpeg);
   background-position: left top;
   opacity: 0.5;
   border: 10px solid;
   border-color: white;
-
   padding: 10px
 }
 
@@ -104,10 +106,10 @@ ul {
   /* position: absolute; */
   top: 0;
   left: 0;
-  background-color: green;
+  background-color: teal;
   border-style: solid;
-  border-width: 1px;
-  border-color: black;
+  border-width: 2px;
+  border-color: white;
   opacity: 0.8;
 }
 

@@ -47,28 +47,36 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
+<<<<<<< HEAD
+
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
+
+=======
+          parent.innerHTML = `<h4>${taskTitle}</h4>`
+          parent.append(editBtn, delBtn)
+>>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
           break
 
+  // add a new track
         case "new-track-button":
           let allTracks = document.querySelectorAll("ul")
           let highestPriority = 0
           for (let track of allTracks) {
             let trackId = elementIdNumber(track)
             let currentTrack = Track.find(trackId)
-            debugger
             if (currentTrack.priority > highestPriority) {
               highestPriority = currentTrack.priority
             }
           }
+
+          highestPriority++
+
           let projectName = document.querySelector(".project-name")
-          projectId = elementIdNumber(projectName) // 'project-1'
-          debugger
-          // let newTrack = TracksAdapter.create(1, highestPriority) // project id, priority
-          let aDiv = document.querySelector(".a")
-          // TracksAdapter.createTrackElement(aDiv, newTrack)
+          let projectId = elementIdNumber(projectName) // 'project-1'
+
+          let newTrack = TracksAdapter.create(projectId, highestPriority)
           break
 
         case "start-gantt":
@@ -132,8 +140,11 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
+<<<<<<< HEAD
+=======
 
 
+>>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target

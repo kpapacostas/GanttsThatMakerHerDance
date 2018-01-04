@@ -62,7 +62,7 @@ function createTrackElement(container, track) {
   container.innerHTML += `
     <div class="track-container" id="track-container-${track.id}">
       <br>
-      <button class ="delete-track-button" id="delete-track-${track.id}">X</button><h3>Track ${track.priority}</h3>
+      <button class ="delete-track-button" id="delete-track-${track.id}">X</button>
       <ul class="track" id="track-${track.id}"}></ul>
     </div>`
   makeSortable()

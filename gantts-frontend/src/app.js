@@ -23,7 +23,7 @@ class App {
           break
 
 //create task form
-        case "create-task-button":
+        case "create-task button":
           let task = ''
           let newForm = TaskForm.newForm(task)
           e.target.parentElement.append(newForm)
@@ -133,7 +133,7 @@ class App {
         //   console.log(upTask);
         //   break
 
-        
+
         default:
           console.log(e)
         }

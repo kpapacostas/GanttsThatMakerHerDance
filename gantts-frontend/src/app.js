@@ -169,7 +169,9 @@ class App {
       if (totalSeconds > 0){
         totalSeconds--;
       } else {
-        document.getElementById("myBar").innerText="Done" // move this somewhere, too
+        document.getElementById("myBar").innerText="" // move this somewhere, too
+        $("#myBar").width("0px");
+        $("#timeline").animate({left: 0}, 0, "linear");
         clearInterval(myInterval)}
       }
       ,1000);

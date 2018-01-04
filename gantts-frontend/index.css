@@ -125,30 +125,38 @@ ul {
 }
 
 #myProgress {
-  width: 95%;
+  width: 0%;
   height: 30px;
   background-color: #ddd;
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 1;
+  z-index: 4;
 }
 
 #myBar {
   width: 0%;
   height: 30px;
   background-color: #4CAF50;
-  text-align: center;
   line-height: 30px;
   position: absolute;
   bottom: 0;
   left: 0;
+  z-index: 3;
+}
+
+#timer{
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: 5;
 }
 
 #timeline {
   border-left: 3px solid black;
-  z-index: 5;
-  height: 94%;
+  z-index: 6;
+  height: 100%;
   position: absolute;
 }
 
@@ -156,4 +164,10 @@ ul {
   text-align: left;
   float: left;
   position: relative;
+}
+
+
+
+h3{
+  margin: 0px;
 }

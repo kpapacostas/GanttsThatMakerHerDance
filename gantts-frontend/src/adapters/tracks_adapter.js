@@ -1,5 +1,5 @@
 class TracksAdapter {
-  //
+
   // static all(){
   //   fetch('http://localhost:3000/api/tracks')
   //   .then(resp => resp.json())
@@ -67,7 +67,9 @@ function createTrackElement(container, track) {
 }
 
 function createTrackObj(json){
-  new Track(json)
+  let newTrack = new Track(json)
+  let aDiv = document.querySelector(".a")
+  createTrackElement(aDiv, newTrack)
 }
 
 function updateTrackObj(json){

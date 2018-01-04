@@ -161,15 +161,17 @@ class App {
   static progressBar(startLength, endLength, tasksLength) {
     let totalSeconds = tasksLength*5; //add *60 back when done
     let totalMilliseconds = totalSeconds*1000;
-    $("#myBar").animate({width: endLength-startLength}, totalMilliseconds, "linear");
-    $("#timeline").animate({left: endLength-startLength}, totalMilliseconds, "linear");
+    let barLength = endLength-startLength;
+    $("#myProgress").width(barLength);
+    $("#myBar").animate({width: barLength}, totalMilliseconds, "linear");
+    $("#timeline").animate({left: barLength}, totalMilliseconds, "linear");
     let myInterval = setInterval(function(){
       let formattedSeconds = formattedTime(totalSeconds);
-      document.getElementById("myBar").innerText=formattedSeconds; // should move this somewhere, but where
+      document.getElementById("timer").innerText=formattedSeconds; // should move this somewhere, but where
       if (totalSeconds > 0){
         totalSeconds--;
       } else {
-        document.getElementById("myBar").innerText="" // move this somewhere, too
+        document.getElementById("timer").innerText="" // move this somewhere, too
         $("#myBar").width("0px");
         $("#timeline").animate({left: 0}, 0, "linear");
         clearInterval(myInterval)}

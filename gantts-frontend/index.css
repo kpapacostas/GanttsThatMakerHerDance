@@ -12,10 +12,10 @@ html, body {
   grid-template-areas:
     "h h h h h"
     "c c c c c"
-    "s a a a a"
-    "s a a a a"
-    "s a a a a"
-    "s a a a a"
+    "a a a a a"
+    "a a a a a"
+    "a a a a a"
+    "a a a a a"
     "d d d d d"
     "d d d d d"
     "d d d d d"
@@ -64,10 +64,6 @@ ul {
 }
 
 /* This is a sidebar for new tracks */
-.sidebar {
-  grid-area: s;
-  background-color: white;
-}
 
 .new-track {
   margin-bottom: 30px;
@@ -92,9 +88,7 @@ ul {
 }
 
 .new-track-button {
-
 }
-
 
 .task {
   float: left;

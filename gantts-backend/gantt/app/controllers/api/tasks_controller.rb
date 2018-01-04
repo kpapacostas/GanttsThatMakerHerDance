@@ -8,13 +8,24 @@ class Api::TasksController < ApplicationController
   def create
     @task = Task.create(task_params)
     render json: @task, status: 200
-    #
+
     # if @task.valid?
     #   @task.save
     #   render json: @task, status: 200
     # else
     #   render message: "Ya blew it!"
     # end
+  end
+
+  def update
+    @task = Task.find(params[:id])
+    @task.update(task_params)
+    render json: @task, status: 200
+  end
+
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
   end
 
   def task_params

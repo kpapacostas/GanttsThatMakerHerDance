@@ -52,7 +52,12 @@ class TasksAdapter {
 //HELPER METHODS
 
 function populateTasks(json){
-  json.forEach((hash)=>{
+  let taskArray = Object.keys(json).sort((a, b) => {
+    return json[a].start_time - json[b].start_time
+  }).map((key) => {
+    return json[key]
+  })
+  taskArray.forEach((hash)=>{
     let newTask = new Task(hash)
     let trackId = newTask.track_id
     let parentTrack = document.getElementById(`track-${trackId}`)
@@ -64,7 +69,7 @@ function createTaskElement(trackElement, task) {
 
   let newTask = document.createElement('div')
   newTask.className = "task"
-  newTask.id = `${task.id}`
+  newTask.id = `task-${task.id}`
   newTask.innerHTML = `${task.title}
   <br/><button class="edit button" id="${task.title}">+</button>
   <button class="delete button" id="${task.title}">-</button> `

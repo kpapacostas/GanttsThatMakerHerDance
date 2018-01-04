@@ -77,8 +77,14 @@ class App {
         case "delete-track-button":
           // identify the track
           let track = Track.find(elementIdNumber(e.target))
-          debugger
-          // TracksAdapter.delete(track)
+          let trackElement = document.getElementById(`track-container-${track.id}`)
+          for (let task of track.tasks) {
+            TasksAdapter.delete(task)
+          }
+          TracksAdapter.delete(track)
+
+          trackElement.innerHTML = ''
+          trackElement.remove()
           break
 
   // start timer bar

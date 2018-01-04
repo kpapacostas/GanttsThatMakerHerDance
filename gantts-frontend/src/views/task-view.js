@@ -4,9 +4,12 @@ const makeSortable = function(){
     grid: [20, 0],
     update: function(e) {
       let tasks = $(this).children()
-      for (task of tasks) {
-        let start_time = $(task).offset().left
-        console.log(task, start_time)
+      for (taskElement of tasks) {
+        let taskId = elementIdNumber(taskElement)
+        let task = Task.findById(taskId)
+        let startTime = $(taskElement).offset().left
+        task.start_time = startTime
+        TasksAdapter.update(task)
       }
     }
   })

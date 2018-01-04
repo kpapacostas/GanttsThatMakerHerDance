@@ -12,7 +12,12 @@ class App {
           createTaskBtn.innerHTML = "Create New Task!"
           let newTask = document.createElement('LI')
           newTask.className = "task"
-          newTask.appendChild(createTaskBtn)
+
+          let delButton = document.createElement('BUTTON')
+          delButton.innerHTML = "Delete Task"
+          delButton.className = "delete-blank-task"
+
+          newTask.append(createTaskBtn, delButton)
           e.target.append(newTask)
           break
 
@@ -45,12 +50,15 @@ class App {
           let startTime = xLocation.left
           let duration = 20
 
+
           let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement)
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
 
-          parent.innerHTML = `<h4>${taskTitle}</h4>`
-          parent.append(editBtn, delBtn)
-          e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
+          parent.innerHTML = `
+          ${taskTitle}
+          <br/><button class="edit-button" id="button">+</button>
+          <button class="delete-button" id="button">-</button> `
+
           break
 
   // add a new track
@@ -85,8 +93,13 @@ class App {
   // start timer bar
 
         case "start-gantt":
+          $(':button').prop('disabled', true);
+
+          //animation and overall timer
           let tasks = $(".track").children();
           let rightmost = 0;
+          let leftmost = $(tasks[0]).offset().left;
+
           for (let task of tasks) {
             let rightSide = $(task).offset().left + $(task).outerWidth();
             if (rightSide > rightmost){
@@ -94,8 +107,12 @@ class App {
             }
             // let tasksEndpoint = $(tasks[tasks.length-1]).offset().right
           }
-          let leftmost = $(tasks[0]).offset().left;
           App.progressBar(leftmost,rightmost,tasks.length)
+
+          let tracks = Track.all.map(x => x.id)
+
+          Task.findByTrack
+
           break
 
         case "delete-button":
@@ -147,7 +164,6 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
-
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target
@@ -188,6 +204,7 @@ class App {
         document.getElementById("timer").innerText="" // move this somewhere, too
         $("#myBar").width("0px");
         $("#timeline").animate({left: 0}, 0, "linear");
+        $(':button').prop('disabled', false);
         clearInterval(myInterval)}
       }
       ,1000);

@@ -38,7 +38,7 @@ ul {
 
 .c {
   grid-area: c;
-  background-color: red;
+  background-color: #f4ff81;
 }
 
 .d {
@@ -53,7 +53,14 @@ ul {
 
 .header {
   grid-area: h;
-  background-color: pink;
+  /* background-color: white; */
+  background-image: url(many_clocks.jpeg);
+  background-position: left top;
+  opacity: 0.5;
+  border: 10px solid;
+  border-color: white;
+
+  padding: 10px
 }
 
 /* This is a sidebar for new tracks */
@@ -72,7 +79,7 @@ ul {
 .track {
   z-index: 1;
   height: 10vh;
-  width: 100vw;
+  /* width: 100vw; */
   position: relative;
   background-color: yellow;
   margin-top: 0;

@@ -24,3 +24,9 @@ Task.findById = (id) => {
     return t.id === id
   })[0]
 }
+
+Task.findByTrack = (track_id) => {
+  return Task.all.filter((t) =>{
+    return t.track_id === track_id
+  })[0]
+}

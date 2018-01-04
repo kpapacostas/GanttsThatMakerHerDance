@@ -65,7 +65,9 @@ function createTaskElement(trackElement, task) {
   let newTask = document.createElement('div')
   newTask.className = "task"
   newTask.id = `${task.id}`
-  newTask.innerHTML = task.title
+  newTask.innerHTML = `${task.title}
+  <br/><button class="edit-button" id="button">+</button>
+  <button class="delete-button" id="button">-</button> `
   trackElement.append(newTask)
 }
 

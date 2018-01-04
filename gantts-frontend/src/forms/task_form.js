@@ -11,7 +11,7 @@ class TaskForm {
       form.innerHTML= `
         <br/><input id="task-title" placeholder="Task Title">
         <textarea id="task-content" placeholder="Task Content"></textarea>
-        <button type="button" class="create-task">Create Task</button>
+        <button type="button" class="create-task">Create Task</button><br/>
       `
       return form
 
@@ -21,7 +21,7 @@ class TaskForm {
         <br/><label for="task-title">Edit Task</label>
         <br/><input id="task-title" placeholder="${task.title}">
         <textarea id="task-content" placeholder="${task.content}"></textarea>
-        <button type="button" class="update-task">Update Task</button>
+        <button type="button" class="update-task">Update Task</button><br/>
       `
       return form
 

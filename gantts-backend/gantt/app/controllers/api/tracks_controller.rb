@@ -16,7 +16,7 @@ class Api::TracksController < ApplicationController
     render json: @track, status: 200
   end
 
-  def delete
+  def destroy
     @track = Track.find(params[:id])
     @track.destroy
   end

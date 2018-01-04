@@ -20,7 +20,7 @@ class TracksAdapter {
         .then(json => createTrackObj(json))
       }
 
-  static update(track){
+  static update(track) {
     const params = {
           "method": "PATCH",
           "headers": {
@@ -29,21 +29,21 @@ class TracksAdapter {
           },
           "body": JSON.stringify({name: track.name})
         }
-      return fetch(`http://localhost:3000/api/tracks/${track.id}`, params)
-        .then(resp => resp.json())
-        .then(json => updateTrackObj(json))
-      }
+    return fetch(`http://localhost:3000/api/tracks/${track.id}`, params)
+      .then(resp => resp.json())
+      .then(json => updateTrackObj(json))
+    }
 
-    static delete(track){
-      const params = {
-            "method": "DELETE",
-            "headers": {
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
+  static delete(track) {
+    const params = {
+          "method": "DELETE",
+          "headers": {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
           }
-        return fetch(`http://localhost:3000/api/tracks/${track.id}`, params)
         }
+    return fetch(`http://localhost:3000/api/tracks/${track.id}`, params)
+    }
 
   }
 
@@ -52,7 +52,7 @@ class TracksAdapter {
 function populateTracks(json){
   console.log("hit populate tracks")
   let aDiv = document.querySelector(".a")
-  json.forEach((hash) =>{
+  json.forEach((hash) => {
     let newTrack = new Track(hash)
     createTrackElement(aDiv, newTrack)
   })
@@ -60,19 +60,21 @@ function populateTracks(json){
 
 function createTrackElement(container, track) {
   container.innerHTML += `
-    <h3>Track ${track.priority}</h3>
-    <ol class="track-container">
+    <div class="track-container" id="track-container-${track.id}">
+      <br>
+      <button class ="delete-track-button" id="delete-track-${track.id}">X</button><h3>Track ${track.priority}</h3>
       <ul class="track" id="track-${track.id}"}></ul>
-    </ol>`
+    </div>`
+  makeSortable()
 }
 
-function createTrackObj(json){
+function createTrackObj(json) {
   let newTrack = new Track(json)
   let aDiv = document.querySelector(".a")
   createTrackElement(aDiv, newTrack)
 }
 
-function updateTrackObj(json){
+function updateTrackObj(json) {
   let track = Track.findById(json.id)
   track.priority = json.priority
 }

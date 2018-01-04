@@ -1,3 +1,4 @@
 function elementIdNumber(element) {
-  return parseInt(element.id.split("-")[1])
+  let elementArray = element.id.split("-")
+  return parseInt(elementArray[elementArray.length - 1])
 }

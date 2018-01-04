@@ -47,10 +47,15 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
+<<<<<<< HEAD
 
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
 
+=======
+          parent.innerHTML = `<h4>${taskTitle}</h4>`
+          parent.append(editBtn, delBtn)
+>>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
           break
 
@@ -72,7 +77,20 @@ class App {
           let projectId = elementIdNumber(projectName) // 'project-1'
 
           let newTrack = TracksAdapter.create(projectId, highestPriority)
+          break
 
+        case "start-gantt":
+          let tasks = $(".track").children();
+          let rightmost = 0;
+          for (let task of tasks) {
+            let rightSide = $(task).offset().left + $(task).outerWidth();
+            if (rightSide > rightmost){
+              rightmost = rightSide;
+            }
+            // let tasksEndpoint = $(tasks[tasks.length-1]).offset().right
+          }
+          let leftmost = $(tasks[0]).offset().left;
+          App.progressBar(leftmost,rightmost,tasks.length)
           break
 
         case "delete-button":
@@ -122,6 +140,11 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target
@@ -145,19 +168,24 @@ class App {
   //   })
   // }
 
-  static progressBar(totalTime) {
-    let totalSeconds = totalTime*60;
-    let totalMilliseconds = totalTime*60*1000;
-    $("#myBar").animate({width: '100%'}, totalMilliseconds);
 
-      let myInterval = setInterval(function(){
-        let formattedSeconds = formattedTime(totalSeconds);
-        document.getElementById("myBar").innerText=formattedSeconds;
-        if (totalSeconds > 0){
-      totalSeconds--;
-    } else { clearInterval(myInterval)}
-    }
-        ,1000);
+  static progressBar(startLength, endLength, tasksLength) {
+    let totalSeconds = tasksLength*5; //add *60 back when done
+    let totalMilliseconds = totalSeconds*1000;
+    $("#myBar").animate({width: endLength-startLength}, totalMilliseconds, "linear");
+    $("#timeline").animate({left: endLength-startLength}, totalMilliseconds, "linear");
+    let myInterval = setInterval(function(){
+      let formattedSeconds = formattedTime(totalSeconds);
+      document.getElementById("myBar").innerText=formattedSeconds; // should move this somewhere, but where
+      if (totalSeconds > 0){
+        totalSeconds--;
+      } else {
+        document.getElementById("myBar").innerText="" // move this somewhere, too
+        $("#myBar").width("0px");
+        $("#timeline").animate({left: 0}, 0, "linear");
+        clearInterval(myInterval)}
+      }
+      ,1000);
     };
 }; //END OF APP CLASS
 

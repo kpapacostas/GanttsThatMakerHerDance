@@ -8,6 +8,8 @@ const makeSortable = function(){
         let start_time = $(task).offset().left
         console.log(task, start_time)
       }
+
+
     }
   })
 }

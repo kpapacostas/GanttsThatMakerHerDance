@@ -47,15 +47,9 @@ class App {
 
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, 1)
 
-<<<<<<< HEAD
 
           parent.innerHTML = `<h4>${taskTitle}</h4>`
           parent.append(editBtn, delBtn)
-
-=======
-          parent.innerHTML = `<h4>${taskTitle}</h4>`
-          parent.append(editBtn, delBtn)
->>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
           e.target.parentElement.innerHTML = `<h2>${taskTitle}</h2>`
           break
 
@@ -140,11 +134,7 @@ class App {
   //   })//END OF MOUSEOUT LISTENER
   // }//END OF MOUSEOUT FUNCTION
 
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 096e47571ee168a1542339bc26d7555f7a947bf4
   // static mouseUp() {
   //   document.body.addEventListener('mouseup', (e)=>{
   //     let element = e.target

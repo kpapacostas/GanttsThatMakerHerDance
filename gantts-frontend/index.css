@@ -29,38 +29,40 @@ ul {
 
 .a {
   grid-area: a;
-  background-color: orange;
+  background-color: white;
+  border: 10px solid;
+  border-color: white;
+
   position: relative;
   margin-top: 0;
   margin-bottom: 0;
 }
 
-/* .c {
-  grid-area: c;
-  background-color: #f4ff81;
-} */
 
 .d {
   grid-area: d;
-  background-color: blue;
+  background-color: white;
+  border-top: 2px solid;
+  border-color: #b0bec5;
 }
 
 .e {
   grid-area: e;
-  background-color: teal;
+  background-color: white;
+  border-top: 2px solid;
+  border-color: #b0bec5;
+
 }
 
-.headerDiv {
-  z-index: 1;
-}
+
 
 .header {
   z-index: 0;
   grid-area: h;
   background-image: url(many_clocks.jpeg);
   background-position: left top;
-  opacity: 0.5;
   border: 10px solid;
+  border-bottom: 0px;
   border-color: white;
   padding: 10px
 }
@@ -81,9 +83,8 @@ ul {
 .track {
   z-index: 1;
   height: 10vh;
-  /* width: 100vw; */
   position: relative;
-  background-color: yellow;
+  background-color: white;
   margin-top: 0;
   margin-bottom: 0;
   padding-left: 0;
@@ -91,6 +92,8 @@ ul {
 
 .track-container {
   padding-left: 0;
+  border-bottom: 2px solid;
+  border-color: #b0bec5;
 }
 
 .new-track-button {
@@ -103,7 +106,7 @@ ul {
   z-index: 2;
   height: 10vh;
   width: 10vw;
-  /* position: absolute; */
+  position: relative;
   top: 0;
   left: 0;
   background-color: teal;
@@ -169,7 +172,9 @@ ul {
   position: absolute;
 }
 
-#button {
+.button {
+  background-color: teal;
+  border: 0px;
   text-align: left;
   float: left;
   position: relative;

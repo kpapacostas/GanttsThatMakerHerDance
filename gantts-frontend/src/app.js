@@ -23,7 +23,7 @@ class App {
           break
 
 //create task form
-        case "create-task-button":
+        case "create-task button":
           let task = ''
           let newForm = TaskForm.newForm(task)
           e.target.parentElement.append(newForm)
@@ -90,8 +90,13 @@ class App {
   // start timer bar
 
         case "start-gantt":
-          // document.querySelector('t')
           $(':button').prop('disabled', true);
+
+
+          let trackIds = Track.all.map(x => x.id);
+          let taskArrays = trackIds.map(x => Task.findByTrack(x));
+          var lengths = taskArrays.map(function(a){return a.length;});
+          let maxLength = Math.max(...lengths);
 
           //animation and overall timer
           let tasks = $(".track").children();
@@ -180,7 +185,7 @@ class App {
         //   console.log(upTask);
         //   break
 
-        
+
         default:
           console.log(e)
         }

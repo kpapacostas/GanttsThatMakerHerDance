@@ -21,7 +21,7 @@ const makeResizable = function() {
     minWidth: 50,
     // containment: ".track",
     // minWidth: 50,
-    handles: ('e'),
+    handles: ({'e': '.ui-resizable-e'}),
     grid: 20,
     // 'w':'.ui-resizable-w'
     // helper: "resizable-helper"

@@ -71,12 +71,18 @@ function createTaskElement(trackElement, task) {
   newTask.className = "task"
   newTask.id = `task-${task.id}`
   newTask.innerHTML = `
-  <div>
-    ${task.title}
-    <br/>
-    <button class="edit button" id="${task.title}">+</button>
-    <button class="delete button" id="${task.title}">-</button>
+
+  <button class="delete button" id="${task.title}">x</button>
+  <br>
+  <div class="task-title">${task.title}</div>
+  <div class="task-buttons">
+    <button class="edit button" id="${task.title}">Edit</button>
+
+  </div>
+
+  <div class="ui-resizable-handle ui-resizable-e">
   </div>`
+
   newTask.style.width = `${task.duration}px`
   trackElement.append(newTask)
   makeResizable()

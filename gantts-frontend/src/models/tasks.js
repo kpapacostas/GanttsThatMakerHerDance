@@ -9,6 +9,14 @@ class Task {
     Task.all.push(this);
   };
 
+  taskDiv(){
+    return `
+    <h2>Track ${this.track_id}</h2>
+    <h3>${this.title}</h3
+    <p>${this.content}</p>
+    `
+  }
+
 };
 
 Task.all = [];
@@ -28,5 +36,5 @@ Task.findById = (id) => {
 Task.findByTrack = (track_id) => {
   return Task.all.filter((t) =>{
     return t.track_id === track_id
-  })[0]
+  })
 }

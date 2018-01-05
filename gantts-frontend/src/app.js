@@ -97,14 +97,14 @@ class App {
           let lengths = taskArrays.map(function(a){return a.length;});
           let maxLength = Math.max(...lengths);
 
-          //animation and overall timer
+          //overallanimation and timer
           let tasks = $(".track").children();
           let rightmost = App.farRightDiv(tasks);
           let leftmost = $(tasks[0]).offset().left;
           App.progressBar(leftmost,rightmost,maxLength);
 
 
-          //display variables
+          //display (below gantt chart) content
           let secondsPerTask = 5; //change this back to 300 for full 5 minutes
           let currentIndex = 0;
 
@@ -112,7 +112,7 @@ class App {
 
           let totalSeconds = secondsPerTask;
 
-
+          // task specific timer
           let timerInterval = setInterval(function(){
             let formattedSeconds = formattedTime(totalSeconds);
             document.getElementById("currentTimer").innerText=formattedSeconds;
@@ -124,7 +124,7 @@ class App {
           },1000);//end timerInterval
 
 
-
+          //display update
           let changeDisplay = setInterval(function(){
 
             for (let index in taskArrays){
@@ -153,49 +153,6 @@ class App {
 
                   clearInterval(changeDisplay)}
                 },5000);//end changeDisplay
-
-
-
-          // })
-          //
-          //
-          // for (let i=0; i < maxLength-1; i++) {
-          //   let changeDisplay = setInterval(function(){
-          //     for (let index in taskArrays){
-          //       let intIndex = parseInt(index)
-          //       if (taskArrays[intIndex][i]) {
-          //         document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
-          //           taskArrays[intIndex][i].taskDiv();
-          //       } else {
-          //         document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
-          //         "";
-          //       }
-          //       if (taskArrays[intIndex][i+1]) {
-          //         document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
-          //           taskArrays[intIndex][i+1].taskDiv();
-          //       } else {
-          //         document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
-          //         "";
-          //       }
-          //
-          //     };
-          //   }, 3000)
-          //
-          //   let myInterval = setInterval(function(){
-          //     let formattedSeconds = formattedTime(totalSeconds); //5 minutes
-          //     document.getElementById("currentTimer").innerText=formattedSeconds; // should move this somewhere, but where
-          //     if (totalSeconds > 0){
-          //       totalSeconds--;
-          //     } else {
-          //       document.getElementById("currentTimer").innerText="" // move this somewhere, too
-          //       $("#myBar").width("0px");
-          //       $("#timeline").animate({left: 0}, 0, "linear");
-          //       $(':button').prop('disabled', false);
-          //       clearInterval(myInterval)}
-          //     }
-          //     ,1000);
-          //   }; // end of crazy for loop
-          //
 
           break
 

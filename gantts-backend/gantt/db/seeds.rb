@@ -14,3 +14,6 @@ do_makeup = Project.create(name: "Kat's morning")
 track = Track.create(priority: 1, project: do_makeup)
 apply_eyeshadow = Task.create(title: "do eyes", content: "don't look like a whore", start_time: 0, duration: 100, track: track)
 apply_foundation = Task.create(title: "foundation", content: "something something blemishes", start_time: 100, duration: 100, track: track)
+
+track2 = Track.create(priority: 2, project: do_makeup)
+make_coffee = Task.create(title: "make coffee", content: "gotta get that zip", start_time: 0, duration: 100, track: track2)

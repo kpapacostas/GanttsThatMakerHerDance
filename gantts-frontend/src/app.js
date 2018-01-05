@@ -92,76 +92,110 @@ class App {
         case "start-gantt":
           $(':button').prop('disabled', true);
 
-
           let trackIds = Track.all.map(x => x.id);
           let taskArrays = trackIds.map(x => Task.findByTrack(x));
-          var lengths = taskArrays.map(function(a){return a.length;});
+          let lengths = taskArrays.map(function(a){return a.length;});
           let maxLength = Math.max(...lengths);
 
           //animation and overall timer
           let tasks = $(".track").children();
-          let rightmost = 0;
+          let rightmost = App.farRightDiv(tasks);
           let leftmost = $(tasks[0]).offset().left;
+          App.progressBar(leftmost,rightmost,maxLength);
 
-          for (let task of tasks) {
-            let rightSide = $(task).offset().left + $(task).outerWidth();
-            if (rightSide > rightmost){
-              rightmost = rightSide;
+
+          //display variables
+          let secondsPerTask = 5; //change this back to 300 for full 5 minutes
+          let currentIndex = 0;
+
+          App.insertDisplayDivs(trackIds);
+
+          let totalSeconds = secondsPerTask;
+
+
+          let timerInterval = setInterval(function(){
+            let formattedSeconds = formattedTime(totalSeconds);
+            document.getElementById("currentTimer").innerText=formattedSeconds;
+            if (totalSeconds > 1){
+              totalSeconds--;
+            } else {
+              totalSeconds = secondsPerTask
             }
-            // let tasksEndpoint = $(tasks[tasks.length-1]).offset().right
-          }
-          App.progressBar(leftmost,rightmost,tasks.length);
-
-          let trackIds = Track.all.map(x => x.id);
-          let taskArrays = trackIds.map(x => Task.findByTrack(x));
-          var lengths = taskArrays.map(function(a){return a.length;});
-          let maxLength = Math.max(...lengths);
-          let totalSeconds = 3; //change this back to 300 for full 5 minutes
-
-          trackIds.forEach(x => {document.querySelector(".d").innerHTML +=
-            `<div id="currentTrack${x}" class="inline"></div>`
-            document.querySelector(".e").innerHTML +=
-            `<div id="nextTrack${x}" class="inline"></div>`
-          })
+          },1000);//end timerInterval
 
 
-          for (let i=0; i < maxLength-1; i++) {
-            let changeDisplay = setInterval(function(){
-              for (let index in taskArrays){
-                let intIndex = parseInt(index)
-                if (taskArrays[intIndex][i]) {
-                  document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
-                    taskArrays[intIndex][i].taskDiv();
-                } else {
-                  document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
-                  "";
-                }
-                if (taskArrays[intIndex][i+1]) {
-                  document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
-                    taskArrays[intIndex][i+1].taskDiv();
-                } else {
-                  document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
-                  "";
-                }
 
-              };
-            }, 3000)
+          let changeDisplay = setInterval(function(){
 
-            let myInterval = setInterval(function(){
-              let formattedSeconds = formattedTime(totalSeconds); //5 minutes
-              document.getElementById("currentTimer").innerText=formattedSeconds; // should move this somewhere, but where
-              if (totalSeconds > 0){
-                totalSeconds--;
+            for (let index in taskArrays){
+              let intIndex = parseInt(index)
+              if (taskArrays[intIndex][currentIndex]) {
+                document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
+                  taskArrays[intIndex][currentIndex].taskDiv();
               } else {
-                document.getElementById("currentTimer").innerText="" // move this somewhere, too
-                $("#myBar").width("0px");
-                $("#timeline").animate({left: 0}, 0, "linear");
-                $(':button').prop('disabled', false);
-                clearInterval(myInterval)}
+                document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
+                "";
               }
-              ,1000);
-            }; // end of crazy for loop
+              if (taskArrays[intIndex][currentIndex+1]) {
+                document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
+                  taskArrays[intIndex][currentIndex+1].taskDiv();
+              } else {
+                document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
+                "";
+              }
+            };
 
+            if (currentIndex < maxLength-1){
+                  currentIndex++;
+                } else {
+                  document.getElementById("currentTimer").innerText="";
+                  clearInterval(timerInterval)
+
+                  clearInterval(changeDisplay)}
+                },5000);//end changeDisplay
+
+
+
+          // })
+          //
+          //
+          // for (let i=0; i < maxLength-1; i++) {
+          //   let changeDisplay = setInterval(function(){
+          //     for (let index in taskArrays){
+          //       let intIndex = parseInt(index)
+          //       if (taskArrays[intIndex][i]) {
+          //         document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
+          //           taskArrays[intIndex][i].taskDiv();
+          //       } else {
+          //         document.querySelector(`#currentTrack${intIndex+1}`).innerHTML =
+          //         "";
+          //       }
+          //       if (taskArrays[intIndex][i+1]) {
+          //         document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
+          //           taskArrays[intIndex][i+1].taskDiv();
+          //       } else {
+          //         document.querySelector(`#nextTrack${intIndex+1}`).innerHTML =
+          //         "";
+          //       }
+          //
+          //     };
+          //   }, 3000)
+          //
+          //   let myInterval = setInterval(function(){
+          //     let formattedSeconds = formattedTime(totalSeconds); //5 minutes
+          //     document.getElementById("currentTimer").innerText=formattedSeconds; // should move this somewhere, but where
+          //     if (totalSeconds > 0){
+          //       totalSeconds--;
+          //     } else {
+          //       document.getElementById("currentTimer").innerText="" // move this somewhere, too
+          //       $("#myBar").width("0px");
+          //       $("#timeline").animate({left: 0}, 0, "linear");
+          //       $(':button').prop('disabled', false);
+          //       clearInterval(myInterval)}
+          //     }
+          //     ,1000);
+          //   }; // end of crazy for loop
+          //
 
           break
 
@@ -192,7 +226,24 @@ class App {
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION
 
+  static farRightDiv(tasks){
+    let rightmost = 0
+    for (let task of tasks) {
+      let rightSide = $(task).offset().left + $(task).outerWidth();
+      if (rightSide > rightmost){
+        rightmost = rightSide;
+      }
+    }
+    return rightmost
+  };
 
+  static insertDisplayDivs(trackIds){
+    trackIds.forEach(x => {document.querySelector(".d").innerHTML +=
+      `<div id="currentTrack${x}" class="inline"></div>`
+      document.querySelector(".e").innerHTML +=
+      `<div id="nextTrack${x}" class="inline"></div>`
+    });
+  }
 
   static progressBar(startLength, endLength, tasksLength) {
     let totalSeconds = tasksLength*5; //add *60 back when done
@@ -210,12 +261,14 @@ class App {
         document.getElementById("timer").innerText="" // move this somewhere, too
         $("#myBar").width("0px");
         $("#timeline").animate({left: 0}, 0, "linear");
+          $("#myProgress").width("0px");
         $(':button').prop('disabled', false);
         clearInterval(myInterval)}
       }
       ,1000);
     };
 }; //END OF APP CLASS
+
 
 //formats time in seconds to min:seconds
 function formattedTime(time) {

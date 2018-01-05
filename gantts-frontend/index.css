@@ -1,3 +1,4 @@
+
 html, body {
   height: 100%;
   margin: 0;
@@ -25,6 +26,10 @@ html, body {
 
 ul {
   list-style: none;
+}
+
+.form {
+  z-index: 3
 }
 
 .a {
@@ -77,7 +82,6 @@ ul {
 }
 
 .track {
-  z-index: 1;
   height: 10vh;
   position: relative;
   background-color: white;
@@ -87,6 +91,7 @@ ul {
 }
 
 .track-container {
+  /* z-index: -1; */
   padding-left: 0;
   border-bottom: 2px solid;
   border-color: #b0bec5;
@@ -97,20 +102,22 @@ ul {
 
 .task {
   float: left;
-  z-index: 2;
+  /* z-index: 0; */
   height: 10vh;
   width: 10vw;
-  position: relative;
+  /* position: relative; */
   top: 0;
   left: 0;
-  background-color: teal;
+  background-color: #fff176;
   border-style: solid;
   border-width: 2px;
-  border-color: white;
+  border-color: #eceff1;
   opacity: 0.8;
+  font-size: 1.2vw;
 }
 
 .dropdown {
+    /* z-index: -1; */
     position: relative;
     display: inline-block;
 }
@@ -119,7 +126,7 @@ ul {
     display: none;
     min-width: 160px;
     padding: 12px 16px;
-    z-index: 3;
+    /* z-index: 3; */
 }
 
 .dropdown:click .dropdown-content {
@@ -137,7 +144,7 @@ ul {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 4;
+  /* z-index: 4; */
 }
 
 #myBar {
@@ -148,7 +155,7 @@ ul {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 3;
+  /* z-index: 3; */
 }
 
 #timer{
@@ -156,7 +163,7 @@ ul {
   position: absolute;
   bottom: 0;
   left: 0;
-  z-index: 5;
+  /* z-index: 5; */
 }
 
 #timeline {
@@ -167,13 +174,24 @@ ul {
 }
 
 .button {
-  background-color: teal;
+  background-color: #fff176;
   border: 0px;
   text-align: left;
   float: left;
   position: relative;
 }
 
+.button:hover {
+  background-color: #b0bec5 ;
+}
+
+.form {
+  z-index: 1;
+  position: relative;
+  background-color: #b0bec5;
+  border: 5px solid;
+  border-color: #eceff1;
+}
 
 
 h3{
@@ -182,4 +200,92 @@ h3{
 
 .inline{
   display: inline-block;
+}
+
+
+
+
+
+
+/*EXPERIMENT */
+wrap {
+  position: absolute;
+  overflow: hidden;
+  top: 10%;
+  right: 10%;
+  bottom: 85px;
+  left: 10%;
+  padding: 20px 50px;
+  display: block;
+  border-radius: 4px;
+  transform: translateY(20px);
+  transition: all 0.5s;
+  visibility: hidden;
+}
+.wrap .content {
+  opacity: 0;
+}
+.wrap:before {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  background: white;
+  content: "";
+  bottom: 10px;
+  left: 50%;
+  top: 95%;
+  color: #fff;
+  border-radius: 50%;
+  -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.wrap.active {
+  display: block;
+  visibility: visible;
+  box-shadow: 2px 3px 16px silver;
+  transition: all 600ms;
+  transform: translateY(0px);
+  transition: all 0.5s;
+}
+.wrap.active:before {
+  height: 2000px;
+  width: 2000px;
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  margin-left: -1000px;
+  margin-top: -1000px;
+  display: block;
+  -webkit-transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  transition: all 600ms cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+.wrap.active .content {
+  position: relative;
+  z-index: 1;
+  opacity: 1;
+  transition: all 600ms cubic-bezier(0.55, 0.055, 0.675, 0.19);
+}
+
+a.button {
+  padding: 11px 11px 13px 13px;
+  outline: none;
+  border-radius: 50%;
+  background: #007fed;
+  color: #fff;
+  font-size: 24px;
+  display: block;
+  position: fixed;
+  left: 50%;
+  bottom: 20px;
+  top: auto;
+  margin-left: -25px;
+  transition: transform 0.25s;
+}
+a.button:hover {
+  text-decoration: none;
+  background: #2198ff;
+}
+a.button.active {
+  transform: rotate(135deg);
+  transition: transform 0.5s;
 }

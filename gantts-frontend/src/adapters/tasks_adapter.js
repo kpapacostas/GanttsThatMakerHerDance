@@ -30,8 +30,8 @@ class TasksAdapter {
           "body": JSON.stringify({title: task.title, content: task.content, start_time: task.start_time, duration: task.duration})
         }
       return fetch(`http://localhost:3000/api/tasks/${task.id}`, params)
-        .then(resp => resp.json())
-        .then(json => updateTaskObj(json))
+        // .then(resp => resp.json())
+        // .then(json => updateTaskObj(json))
       }
 
     static delete(task){
@@ -79,11 +79,11 @@ function createTaskElement(trackElement, task) {
 function createTaskObj(json){
   let newTask = new Task(json)
 }
-
-function updateTaskObj(json){
-  let t = Task.findById(json.id)
-  t.title = json.title
-  t.content = json.content
-  t.start_time = json.start_time
-  t.duration = json.duration
-}
+//
+// function updateTaskObj(json){
+//   let t = Task.findById(json.id)
+//   t.title = json.title
+//   t.content = json.content
+//   t.start_time = json.start_time
+//   t.duration = json.duration
+// }

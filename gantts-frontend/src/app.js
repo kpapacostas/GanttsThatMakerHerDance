@@ -7,53 +7,48 @@ class App {
 
 //create task box
         case "track ui-sortable":
-          let createTaskBtn = document.createElement('BUTTON')
-          createTaskBtn.className = "create-task button"
-          createTaskBtn.innerHTML = "Create Task!"
-
           let newTask = document.createElement('LI')
           newTask.className = "task"
 
-          let delButton = document.createElement('BUTTON')
-          delButton.innerHTML = "Or Not."
-          delButton.className = "delete-blank-task button"
-
-          newTask.append(createTaskBtn, delButton)
+          newTask.innerHTML = `
+            <a class"create-new-task button" id="create-new-task" href="#">New Task?</a><br/>
+            <a class"delete-blank-task button" id="or-not" href="#">Or Not.</a>
+          `
           e.target.append(newTask)
           break
 
-//create task form
-        case "create-task button":
-          let task = ''
-          let newForm = TaskForm.newForm(task)
-          e.target.parentElement.append(newForm)
-          e.target.remove()
-          break
 
 //task box with title
         case "create-task":
-          let taskTitle = document.getElementById('task-title').value
+          $('.wrap, a').toggleClass('active')
+          let taskTitle = toTitleCase(document.getElementById('task-title').value)
           let taskContent = document.getElementById('task-content').value
-          let parent = e.target.parentElement.parentElement
-          parent.id = "made-task"
+          let parent = e.target.parentElement.parentElement.parentElement.parentElement
 
-          let xLocation = e.target.parentElement.getBoundingClientRect()
-          let startTime = xLocation.left
-          let duration = 20
+          if (document.getElementById('task-title').value === ""){
+            alert("Can't make a Task without info, brah!")
+            parent.remove()
+          }else {
+
+            let xLocation = parent.getBoundingClientRect()
+            let startTime = xLocation.left
+            let duration = 20
 
 
-          let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement)
-          TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
+            let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement.parentElement.parentElement)
+            TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
 
-          parent.innerHTML = `
-          ${taskTitle}
-          <br/><button class="edit button" id="${taskTitle}">+</button>
-          <button class="delete button" id="${taskTitle}">-</button> `
+            e.target.parentElement.remove()
+            parent.innerHTML = `
+            ${taskTitle}
+            <br/><button class="edit button" id="${taskTitle}">+</button>
+            <button class="delete button" id="${taskTitle}">-</button> `
+          }
           break
 
 
   // add a new track
-        case "new-track-button":
+        case "new-track-button button":
           let allTracks = document.querySelectorAll("ul")
           let highestPriority = 0
           for (let track of allTracks) {
@@ -70,6 +65,7 @@ class App {
           let projectId = elementIdNumber(projectName) // 'project-1'
 
           let newTrack = TracksAdapter.create(projectId, highestPriority)
+
           break
 
   // delete existing track
@@ -91,6 +87,13 @@ class App {
 
         case "start-gantt":
           $(':button').prop('disabled', true);
+
+          //disabling buttons
+          let dBtns = Array.from(document.getElementsByClassName('delete button'))
+          dBtns.forEach((b) => {return b.style.opacity = 0})
+
+          let eBtns = Array.from(document.getElementsByClassName('edit button'))
+          eBtns.forEach((b) => {return b.style.opacity = 0})
 
 
           let trackIds = Track.all.map(x => x.id);
@@ -173,20 +176,68 @@ class App {
           let ediTask = Task.findByTitle(e.target.id)
           let newF = TaskForm.newForm(ediTask)
           e.target.parentElement.append(newF)
+          $('.wrap, a').toggleClass('active')
+
           break
 
-        // case "update-task":
-        // debugger
-        //   let upTask = Task.findByTitle(e.target.parentElement.parentElement.innerHTML.split('<')[0])
-        //   console.log(upTask);
-        //   break
+        case "or-not-new":
+          $('.wrap, a').toggleClass('active')
+          e.target.parentElement.parentElement.parentElement.parentElement.remove()
+          break
+
+        case "or-not-update":
+          $('.wrap, a').toggleClass('active')
+          e.target.parentElement.parentElement.parentElement.remove()
+          break
+
+
+        case "update-task":
+          let upTask = Task.findByTitle(e.target.parentElement.parentElement.parentElement.children[1].id)
+          upTask.title = document.getElementById('task-title').value
+          upTask.content = document.getElementById('task-content').value
+
+          TasksAdapter.update(upTask)
+
+          e.target.parentElement.parentElement.parentElement.innerHTML = `
+          ${upTask.title}
+          <br/><button class="edit button" id="${upTask.title}">+</button>
+          <button class="delete button" id="${upTask.title}">-</button>
+          `
+          e.target.parentElement.parentElement.remove()
+
+          break
 
 
         default:
-          console.log(e)
+          // console.log(e)
+        }//CLASSNAME SWITCH
+
+
+
+///////////////////////////////////////////////////////////////
+//NEW SWITCH
+
+        switch (e.target.id) {
+          case "or-not":
+          debugger
+            e.target.parentElement.remove()
+          break
+
+          case "create-new-task":
+            let task = ''
+            let newForm = TaskForm.newForm(task)
+            e.target.parentElement.append(newForm)
+            e.target.remove()
+            document.getElementById('or-not').remove()
+            $('.wrap, a').toggleClass('active')
+            break
+
+
         }
+
     })//CLICK-EVENTLISTENER
   }//CLICK FUCNTION
+
 
 
 

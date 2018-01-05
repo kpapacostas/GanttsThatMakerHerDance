@@ -67,17 +67,25 @@ function populateTasks(json){
 
 function createTaskElement(trackElement, task) {
 
-  let newTask = document.createElement('div')
+  let newTask = document.createElement('li')
   newTask.className = "task"
   newTask.id = `task-${task.id}`
-  newTask.innerHTML = `${task.title}
-  <br/><button class="edit button" id="${task.title}">+</button>
-  <button class="delete button" id="${task.title}">-</button> `
+  newTask.innerHTML = `
+  <div>
+    ${task.title}
+    <br/>
+    <button class="edit button" id="${task.title}">+</button>
+    <button class="delete button" id="${task.title}">-</button>
+  </div>`
+  newTask.style.width = `${task.duration}px`
   trackElement.append(newTask)
+  makeResizable()
 }
 
 function createTaskObj(json){
   let newTask = new Task(json)
+  let trackElement = document.getElementById(`track-${newTask.track_id}`)
+  createTaskElement(trackElement, newTask)
 }
 
 function updateTaskObj(json){

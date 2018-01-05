@@ -13,6 +13,7 @@ class App {
 
           let newTask = document.createElement('LI')
           newTask.className = "task"
+          // makeResizable()
 
           let delButton = document.createElement('BUTTON')
           delButton.innerHTML = "Or Not."
@@ -34,21 +35,20 @@ class App {
         case "create-task":
           let taskTitle = document.getElementById('task-title').value
           let taskContent = document.getElementById('task-content').value
-          let parent = e.target.parentElement.parentElement
-          parent.id = "made-task"
 
           let xLocation = e.target.parentElement.getBoundingClientRect()
           let startTime = xLocation.left
-          let duration = 20
-
+          let duration = 100
 
           let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement)
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
 
-          parent.innerHTML = `
-          ${taskTitle}
-          <br/><button class="edit button" id="${taskTitle}">+</button>
-          <button class="delete button" id="${taskTitle}">-</button> `
+          // parent.innerHTML = `
+          // ${taskTitle}
+          // <br/><button class="edit button" id="${taskTitle}">+</button>
+          // <button class="delete button" id="${taskTitle}">-</button>`
+          // parent.style.width = `${duration}px`
+          // makeResizable()
           break
 
 
@@ -204,7 +204,7 @@ class App {
         case "delete button":
           let delTask = Task.findByTitle(e.target.id)
           TasksAdapter.delete(delTask)
-          e.target.parentElement.remove()
+          $(e.target).closest("li").remove()
           break
 
         case "edit button":

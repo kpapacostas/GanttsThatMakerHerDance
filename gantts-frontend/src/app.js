@@ -133,7 +133,7 @@ class App {
         //   console.log(upTask);
         //   break
 
-        
+
         default:
           console.log(e)
         }

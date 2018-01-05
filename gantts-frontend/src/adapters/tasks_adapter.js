@@ -71,9 +71,11 @@ function createTaskElement(trackElement, task) {
   newTask.className = "task"
   newTask.id = `task-${task.id}`
   newTask.innerHTML = `${task.title}
-  <br/><button class="edit button" id="${task.title}">+</button>
-  <button class="delete button" id="${task.title}">-</button> `
+    <br/><button class="edit button" id="${task.title}">+</button>
+    <button class="delete button" id="${task.title}">-</button>
+    <br>`
   trackElement.append(newTask)
+  makeResizable()
 }
 
 function createTaskObj(json){

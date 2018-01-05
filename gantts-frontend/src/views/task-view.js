@@ -26,7 +26,6 @@ const makeResizable = function() {
     grid: 20,
     // 'w':'.ui-resizable-w'
     // helper: "resizable-helper"
-    // grid: 20,
     // autoHide: true
     update: function(e) {
       console.log(e)

@@ -59,8 +59,6 @@ ul {
 
 }
 
-
-
 .header {
   z-index: 0;
   grid-area: h;
@@ -104,17 +102,28 @@ ul {
   float: left;
   /* z-index: 0; */
   height: 10vh;
-  width: 10vw;
+  /* width: 10vh; */
   /* position: relative; */
-  top: 0;
-  left: 0;
-  background-color: #fff176;
+  /* top: 0; */
+  /* left: 0; */
+  background-color: teal;
   border-style: solid;
   border-width: 2px;
   border-color: #eceff1;
   opacity: 0.8;
   font-size: 1.2vw;
 }
+
+.ui-resizable-handle {
+  cursor: e-resize;
+  height: 10px;
+  bottom: -5px;
+  background-color: black;
+}
+
+/* .ui-resizable-e {
+  bottom: -5px;
+} */
 
 .dropdown {
     /* z-index: -1; */
@@ -180,6 +189,8 @@ ul {
   float: left;
   position: relative;
 }
+<<<<<<< HEAD
+=======
 
 .button:hover {
   background-color: #b0bec5 ;
@@ -289,3 +300,4 @@ a.button.active {
   transform: rotate(135deg);
   transition: transform 0.5s;
 }
+>>>>>>> 78c2e85a084b1cd7b87ccc96009753211532c78a

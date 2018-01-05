@@ -1,7 +1,7 @@
-const makeSortable = function(){
+const makeSortable = function() {
   $(".track").sortable({
-    axis: "x",
-    grid: [20, 0],
+    // axis: "x",
+    grid: 20,
     update: function(e) {
       let tasks = $(this).children()
       for (taskElement of tasks) {
@@ -11,6 +11,24 @@ const makeSortable = function(){
         task.start_time = startTime
         TasksAdapter.update(task)
       }
+    }
+  })
+
+}
+
+const makeResizable = function() {
+  $(".task").resizable({
+    maxHeight: 100,
+    minWidth: 50,
+    // containment: ".track",
+    // minWidth: 50,
+    handles: ('e'),
+    grid: 20,
+    // 'w':'.ui-resizable-w'
+    // helper: "resizable-helper"
+    // autoHide: true
+    update: function(e) {
+      console.log(e)
     }
   })
 }

@@ -215,7 +215,6 @@ class App {
 
         switch (e.target.id) {
           case "or-not":
-          debugger
             e.target.parentElement.remove()
           break
 

@@ -86,11 +86,14 @@ ul {
   padding-left: 0;
 }
 
+
+
 .track-container {
   padding-left: 0;
   border-bottom: 2px solid;
   border-color: #b0bec5;
 }
+
 
 .new-track-button {
 }
@@ -102,7 +105,7 @@ ul {
   position: relative;
   top: 0;
   left: 0;
-  background-color: teal;
+  background-color: #f4ff81;
   border-style: solid;
   border-width: 2px;
   border-color: white;
@@ -131,7 +134,7 @@ ul {
     display: none;
     min-width: 160px;
     padding: 12px 16px;
-    z-index: 3;
+    z-index: 1000;
 }
 
 .dropdown:click .dropdown-content {
@@ -179,11 +182,15 @@ ul {
 }
 
 .button {
-  background-color: teal;
+  background-color: #f4ff81;
   border: 0px;
   text-align: left;
   float: left;
   position: relative;
+}
+
+.button:hover{
+  background-color: gray
 }
 
 
@@ -194,4 +201,32 @@ h3{
 
 .inline {
   display: inline-block;
+}
+
+
+/*ANIMATION */
+
+a.button {
+  padding: 11px 11px 13px 13px;
+  position: relative;
+  outline: none;
+  border-radius: 50%;
+  background: #007fed;
+  color: #fff;
+  font-size: 24px;
+  display: block;
+  /* position: fixed; */
+  left: 50%;
+  bottom: 20px;
+  top: auto;
+  margin-left: -25px;
+  transition: transform 0.25s;
+}
+a.button:hover {
+  text-decoration: none;
+  background: #2198ff;
+}
+a.button.active {
+  transform: rotate(135deg);
+  transition: transform 0.5s;
 }

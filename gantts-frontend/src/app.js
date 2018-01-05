@@ -7,19 +7,13 @@ class App {
 
 //create task box
         case "track ui-sortable":
-          let createTaskBtn = document.createElement('BUTTON')
-          createTaskBtn.className = "create-task button"
-          createTaskBtn.innerHTML = "Create Task!"
-
           let newTask = document.createElement('LI')
           newTask.className = "task"
           // makeResizable()
-
-          let delButton = document.createElement('BUTTON')
-          delButton.innerHTML = "Or Not."
-          delButton.className = "delete-blank-task button"
-
-          newTask.append(createTaskBtn, delButton)
+          newTask.innerHTML = `
+          <a class="create-task button" id="create-new-task" href="#">New Task!</a><br/>
+          <a class"delete-blank-task" id="or-not" href="#">Or Not.</a>
+          `
           e.target.append(newTask)
           break
 
@@ -27,14 +21,19 @@ class App {
         case "create-task button":
           let task = ''
           let newForm = TaskForm.newForm(task)
-          e.target.parentElement.append(newForm)
+          e.target.parentElement.innerHTML = `
+          <input id="task-title" placeholder="Task Title"><br/>
+          <a class="create-task" href="#">Create Task</a>`
+          document.getElementById('or-not').remove()
           e.target.remove()
+
           break
 
 //task box with title
         case "create-task":
           let taskTitle = document.getElementById('task-title').value
-          let taskContent = document.getElementById('task-content').value
+          let taskContent = ""
+          let parent = e.target.parentElement
 
           let xLocation = e.target.parentElement.getBoundingClientRect()
           let startTime = xLocation.left
@@ -43,6 +42,7 @@ class App {
           let parentTrackId = elementIdNumber(e.target.parentElement.parentElement.parentElement)
           TasksAdapter.create(taskTitle, taskContent, startTime, duration, parentTrackId)
 
+          parent.remove()
           // parent.innerHTML = `
           // ${taskTitle}
           // <br/><button class="edit button" id="${taskTitle}">+</button>
@@ -209,15 +209,27 @@ class App {
 
         case "edit button":
           let ediTask = Task.findByTitle(e.target.id)
-          let newF = TaskForm.newForm(ediTask)
-          e.target.parentElement.append(newF)
+
+          e.target.parentElement.innerHTML = `
+          <br/><input id="task-title" name="${ediTask.id}" value="${ediTask.title}">
+          <a class="update-task" href="#">Update</a>
+          `
           break
 
-        // case "update-task":
-        // debugger
-        //   let upTask = Task.findByTitle(e.target.parentElement.parentElement.innerHTML.split('<')[0])
-        //   console.log(upTask);
-        //   break
+          case "update-task":
+            let upTask = Task.findById(parseInt(e.target.parentElement.children[1].name))
+            upTask.title = document.getElementById('task-title').value
+
+            TasksAdapter.update(upTask)
+
+            e.target.parentElement.innerHTML = `
+            ${upTask.title}
+            <br/><button class="edit button" id="${upTask.title}">+</button>
+            <button class="delete button" id="${upTask.title}">-</button>
+                    `
+            // e.target.parentElement.parentElement.remove()
+
+            break
 
 
         default:
